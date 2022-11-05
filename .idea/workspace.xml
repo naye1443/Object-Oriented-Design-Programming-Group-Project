@@ -4,16 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d06d5c7-ef25-4efd-94fc-95973287ca6f" name="Changes" comment="Updating Working again" />
+    <list default="true" id="2d06d5c7-ef25-4efd-94fc-95973287ca6f" name="Changes" comment="Updating Working again">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Nozama/src/IItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Nozama/src/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nozama/src/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/src/IAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nozama/src/CustomerAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/src/CustomerAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nozama/src/NozamaSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/src/NozamaSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nozama/src/NozamaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/src/NozamaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nozama/testdata/items.json" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/testdata/items.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="localmain" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,6 +48,9 @@
     </option>
   </component>
   <component name="ProjectId" id="2H6eioisWgH3qKpuweFJoln1CdM" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -37,6 +59,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false"
   }
 }]]></component>
@@ -67,6 +90,10 @@
       <option name="presentableId" value="Default" />
       <updated>1667610098013</updated>
       <workItem from="1667610100528" duration="2203000" />
+      <workItem from="1667612474555" duration="189000" />
+      <workItem from="1667612878436" duration="320000" />
+      <workItem from="1667613225357" duration="70000" />
+      <workItem from="1667613357230" duration="1541000" />
     </task>
     <task id="LOCAL-00001" summary="Updating Working">
       <created>1667611436929</created>

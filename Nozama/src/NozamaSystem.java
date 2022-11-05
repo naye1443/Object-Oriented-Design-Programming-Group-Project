@@ -42,6 +42,29 @@ public class NozamaSystem
         userData.forEach( user -> parseUserDataObject((JSONObject) user));
     }
 
+    private void parseInventoryDataObject(JSONObject item)
+    {
+        String key = item.keySet().toString(); // gets the key in the form: "[000]"
+        key = key.substring(1, key.length() - 1); // removes the [], results in: "000"
+
+        JSONObject values = (JSONObject) item.get(key);
+
+        String name, price, description;
+        name = (String) values.get("name");
+        price = (String) values.get("price");
+        description = (String) values.get("description");
+
+        inventory.add(new Item(key, name, price, description));
+    }
+
+    private void loadInventoryFromJson()
+    {
+        inventory.clear();
+
+        inventoryData = jsonHandler.getJSONArrayFromJson("Nozama/testdata/items.json");
+        inventoryData.forEach( item -> parseInventoryDataObject((JSONObject) item));
+    }
+
 
     public void printUserData()
     {
@@ -103,12 +126,20 @@ public class NozamaSystem
         return null;
     }
 
+    public ArrayList<Item> getInventory()
+    {
+        loadInventoryFromJson();
+        return inventory;
+    }
+
 
     private static NozamaSystem instance;
     private JsonHandler jsonHandler = new JsonHandler();
 
     private JSONArray userData;
+    private JSONArray inventoryData;
 
     private ArrayList<User> users = new ArrayList<>();
+    private ArrayList<Item> inventory = new ArrayList<>();
 
 }
