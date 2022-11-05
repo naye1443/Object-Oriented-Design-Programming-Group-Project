@@ -1,4 +1,4 @@
-public class CustomerAccount implements Account
+public class CustomerAccount implements IAccount
 {
 
     @Override
