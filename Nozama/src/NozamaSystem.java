@@ -2,10 +2,14 @@ import ReadWrite.JsonHandler;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.util.ArrayList;
-
 public class NozamaSystem
 {
+    private static NozamaSystem instance;
+    private JsonHandler jsonHandler = new JsonHandler();
+
+    private JSONArray userData;
+
+
     private NozamaSystem(){}
 
     public static NozamaSystem getInstance()
@@ -20,95 +24,36 @@ public class NozamaSystem
 
     private void parseUserDataObject(JSONObject user)
     {
-        String key = user.keySet().toString(); // gets the key in the form: "[000]"
-        key = key.substring(1, key.length() - 1); // removes the [], results in: "000"
+        //Get the user object within the list
+        JSONObject userObject = (JSONObject) user.get("000");
 
-        JSONObject values = (JSONObject) user.get(key);
 
-        String username, password, accountType;
-        username = (String) values.get("username");
-        password = (String) values.get("password");
-        accountType = (String) values.get("accountType");
+        //Get the username from the user object
+        String username = (String) userObject.get("username");
+        System.out.println(username);
 
-        users.add(new User(key, username, password, accountType));
+        //Get the password from the user object
+        String password = (String) userObject.get("password");
+        System.out.println(password);
 
+        //Get the accountType from the user object
+        String accountType = (String) userObject.get("account");
+        System.out.println(accountType);
     }
 
-    private void loadUsersFromJson()
+    public void loadUsersFromJson()
     {
-        users.clear();
-
         userData = jsonHandler.getJSONArrayFromJson("Nozama/testdata/users.json");
-        userData.forEach( user -> parseUserDataObject((JSONObject) user));
+        parseUserDataObject((JSONObject) userData.get(0));
+        System.out.println(userData);
+
     }
 
-
-    public void printUserData()
+    public void printJson(String filename)
     {
-        loadUsersFromJson();
-        for (User user : users)
-        {
-            System.out.println(user);
-        }
-    }
-
-    public String getUserUsername(String key)
-    {
-        loadUsersFromJson();
-        for (User user : users)
-        {
-            if (user.userID.equals(key))
-            {
-                return user.username;
-            }
-        }
-        return null;
-    }
-
-    public String getUserPassword(String key)
-    {
-        loadUsersFromJson();
-        for (User user : users)
-        {
-            if (user.userID.equals(key))
-            {
-                return user.password;
-            }
-        }
-        return null;
-    }
-
-    public String getUserAccountType(String key)
-    {
-        loadUsersFromJson();
-        for (User user : users)
-        {
-            if (user.userID.equals(key))
-            {
-                return user.accountType;
-            }
-        }
-        return null;
-    }
-
-    public User logIn(String username, String password)
-    {
-        loadUsersFromJson();
-        for (User user : users)
-        {
-            if (user.username.equals(username) && user.password.equals(password))
-                return user;
-        }
-
-        return null;
+        jsonHandler.getJSONArrayFromJson(filename);
     }
 
 
-    private static NozamaSystem instance;
-    private JsonHandler jsonHandler = new JsonHandler();
-
-    private JSONArray userData;
-
-    private ArrayList<User> users = new ArrayList<>();
 
 }

@@ -3,14 +3,14 @@
     "000": {
       "username" :  "username",
       "password": "password",
-      "accountType": "customer"
+      "account": "customer"
     }
   },
   {
     "001": {
       "username" :  "username1",
       "password": "password2",
-      "accountType": "seller"
+      "account": "seller"
     }
   }
 ]
