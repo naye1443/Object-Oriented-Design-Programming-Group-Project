@@ -66,54 +66,6 @@ public class NozamaSystem
     }
 
 
-    public void printUserData()
-    {
-        loadUsersFromJson();
-        for (User user : users)
-        {
-            System.out.println(user);
-        }
-    }
-
-    public String getUserUsername(String key)
-    {
-        loadUsersFromJson();
-        for (User user : users)
-        {
-            if (user.userID.equals(key))
-            {
-                return user.username;
-            }
-        }
-        return null;
-    }
-
-    public String getUserPassword(String key)
-    {
-        loadUsersFromJson();
-        for (User user : users)
-        {
-            if (user.userID.equals(key))
-            {
-                return user.password;
-            }
-        }
-        return null;
-    }
-
-    public String getUserAccountType(String key)
-    {
-        loadUsersFromJson();
-        for (User user : users)
-        {
-            if (user.userID.equals(key))
-            {
-                return user.accountType;
-            }
-        }
-        return null;
-    }
-
     public User logIn(String username, String password)
     {
         loadUsersFromJson();
@@ -126,12 +78,26 @@ public class NozamaSystem
         return null;
     }
 
+    /**
+     * This Method updates the users.json file to accurately represent the users ArrayList
+     * @author Jordan Diaz
+     */
+    public void updateUserJSON()
+    {
+        JSONArray output = new JSONArray();
+        for (User user : users)
+        {
+            output.add(user.toJSONObject());
+        }
+        jsonHandler.writeToJson("Nozama/testdata/users.json", output);
+    }
+
+
     public ArrayList<Item> getInventory()
     {
         loadInventoryFromJson();
         return inventory;
     }
-
 
     private static NozamaSystem instance;
     private JsonHandler jsonHandler = new JsonHandler();

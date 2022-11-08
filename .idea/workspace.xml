@@ -5,16 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d06d5c7-ef25-4efd-94fc-95973287ca6f" name="Changes" comment="Updating Working again">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Nozama/src/IItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Nozama/src/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nozama/src/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/src/IAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nozama/src/CustomerAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/src/CustomerAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Nozama/src/NozamaSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/src/NozamaSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Nozama/src/NozamaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/src/NozamaTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nozama/testdata/items.json" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/testdata/items.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nozama/src/ReadWrite/JsonHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/src/ReadWrite/JsonHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nozama/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/src/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Object-Oriented-Design-Programming-Group-Project/NozamaSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Object-Oriented-Design-Programming-Group-Project/NozamaSystem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Object-Oriented-Design-Programming-Group-Project/NozamaTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Object-Oriented-Design-Programming-Group-Project/NozamaTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Object-Oriented-Design-Programming-Group-Project/ReadWrite/JsonHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Object-Oriented-Design-Programming-Group-Project/ReadWrite/JsonHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Object-Oriented-Design-Programming-Group-Project/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Object-Oriented-Design-Programming-Group-Project/User.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,14 +54,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="NozamaTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="NozamaTest" />
@@ -94,6 +93,11 @@
       <workItem from="1667612878436" duration="320000" />
       <workItem from="1667613225357" duration="70000" />
       <workItem from="1667613357230" duration="1541000" />
+      <workItem from="1667615491976" duration="151000" />
+      <workItem from="1667790650978" duration="10423000" />
+      <workItem from="1667833579420" duration="3484000" />
+      <workItem from="1667869115738" duration="432000" />
+      <workItem from="1667928192120" duration="2429000" />
     </task>
     <task id="LOCAL-00001" summary="Updating Working">
       <created>1667611436929</created>
@@ -126,7 +130,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="localmain" />
+                        <option value="develop" />
                       </list>
                     </value>
                   </entry>

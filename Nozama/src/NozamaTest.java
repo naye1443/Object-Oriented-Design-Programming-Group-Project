@@ -7,19 +7,9 @@ public class NozamaTest
 
         NozamaSystem instance = NozamaSystem.getInstance();
 
-        System.out.println(instance.getUserUsername("000"));
-        System.out.println();
-
-        System.out.println(instance.getUserPassword("000"));
-        System.out.println();
-
-        System.out.println(instance.getUserAccountType("000"));
-        System.out.println();
-
         System.out.println(instance.logIn("username", "password"));
         System.out.println();
 
-        instance.printUserData();
 
         System.out.println();
 
@@ -27,6 +17,7 @@ public class NozamaTest
         {
             System.out.println(item);
         }
+
 
     }
 }
