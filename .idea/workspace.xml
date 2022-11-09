@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d06d5c7-ef25-4efd-94fc-95973287ca6f" name="Changes" comment="Updating Working again">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nozama/Nozama.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nozama/testdata/items.json" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/testdata/items.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nozama/src/CustomerAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/src/CustomerAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nozama/src/IAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nozama/src/IAccount.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,17 +53,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "//wsl$/Ubuntu/home/naye/Nozama/Object-Oriented-Design-Programming-Group-Project",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;//wsl$/Ubuntu/home/naye/Nozama/Object-Oriented-Design-Programming-Group-Project&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="NozamaTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="NozamaTest" />
@@ -105,7 +100,8 @@
       <workItem from="1667833579420" duration="3484000" />
       <workItem from="1667869115738" duration="432000" />
       <workItem from="1667928192120" duration="2429000" />
-      <workItem from="1667951753309" duration="3558000" />
+      <workItem from="1667951753309" duration="4953000" />
+      <workItem from="1667957643510" duration="1110000" />
     </task>
     <task id="LOCAL-00001" summary="Updating Working">
       <created>1667611436929</created>
@@ -154,5 +150,20 @@
     <MESSAGE value="Updating Working" />
     <MESSAGE value="Updating Working again" />
     <option name="LAST_COMMIT_MESSAGE" value="Updating Working again" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Nozama/src/NozamaGui/View.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

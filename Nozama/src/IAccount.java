@@ -1,4 +1,5 @@
 public interface IAccount
 {
-    public void OnSignIn();
+    public void OnLogIn();
 }
+
