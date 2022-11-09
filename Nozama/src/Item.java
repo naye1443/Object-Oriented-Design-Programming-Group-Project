@@ -20,6 +20,28 @@ public class Item implements IItem
                 '}';
     }
 
+    /**
+     * @returns ID of item
+     */
+    public String getID(){
+        return this.ID;
+    }
+
+    /**
+     * @returns name of item
+     */
+    public String getName(){
+        return this.name;
+    }
+
+    /**
+     *
+     * @return returns price of item
+     */
+    public String getPrice(){
+        return this.price;
+    }
+
     @Override
     public Item bundleItem() {
         return null;

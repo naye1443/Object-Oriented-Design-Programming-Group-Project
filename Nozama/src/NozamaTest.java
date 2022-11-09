@@ -6,7 +6,7 @@ public class NozamaTest
         NozamaSystem instance = NozamaSystem.getInstance();
 
         System.out.println(instance.logIn("username", "password"));
-        System.out.println();
+
 
 
         System.out.println();
@@ -15,6 +15,8 @@ public class NozamaTest
         {
             System.out.println(item);
         }
+
+        System.out.println();
         System.out.println("Hello, welcome to Nozama!");
 
     }
