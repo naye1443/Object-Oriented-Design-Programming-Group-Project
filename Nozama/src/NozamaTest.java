@@ -3,8 +3,6 @@ import java.util.ArrayList;
 public class NozamaTest
 {
     public static void main(String[] args) {
-        System.out.println("Hello, welcome to Nozama!");
-
         NozamaSystem instance = NozamaSystem.getInstance();
 
         System.out.println(instance.logIn("username", "password"));
@@ -17,7 +15,7 @@ public class NozamaTest
         {
             System.out.println(item);
         }
-
+        System.out.println("Hello, welcome to Nozama!");
 
     }
 }
