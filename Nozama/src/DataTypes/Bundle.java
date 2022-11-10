@@ -17,7 +17,6 @@ public class Bundle implements IItem{
     }
 
     /**
-     * Assign each bundle with an index in the itemList array.
      * @param addItem - item to be appended to itemList.
      */
     public void bundleItem(IItem addItem){
@@ -45,14 +44,6 @@ public class Bundle implements IItem{
         //Append a IItem bundle as an element to cartcontainer arrayList.
         return (IItem) this.itemList;
     }
-
-
-
-
-
-
-
-
 
     @Override
     public Item bundleItem() {
