@@ -6,6 +6,7 @@ import ReadWrite.Json.JSONObject;
 public class User
 {
     private String userID, username, password, accountType;
+    private IAccount account;
 
     /**
      * Constructor
@@ -17,6 +18,15 @@ public class User
         this.username = username;
         this.password = password;
         this.accountType = accountType;
+
+        if (accountType.equals("customer"))
+        {
+            account = new CustomerAccount(this);
+        }
+        else if (accountType.equals("seller"))
+        {
+            account = new SellerAccount(this);
+        }
     }
 
     /**
@@ -78,5 +88,10 @@ public class User
 
     public String getPassword() {
         return password;
+    }
+
+    public IAccount getAccount()
+    {
+        return account;
     }
 }
