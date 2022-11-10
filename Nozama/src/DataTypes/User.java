@@ -1,6 +1,7 @@
 package DataTypes;
 
-import org.json.simple.JSONObject;
+
+import ReadWrite.Json.JSONObject;
 
 public class User
 {
