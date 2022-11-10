@@ -5,10 +5,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
+import ReadWrite.Json.JSONArray;
+import ReadWrite.Json.parser.JSONParser;
+import ReadWrite.Json.parser.ParseException;
 
 public class JsonHandler
 {
