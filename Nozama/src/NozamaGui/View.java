@@ -3,7 +3,7 @@ package NozamaGui;
 //// This creates the main view port for the system
   public class View {
 //
-//  String[] State = {"User", "Seller", "login"};
+//  String[] State = {"DataTypes.User", "Seller", "login"};
 //
 //  Renders different state of application
 //  public void render{
@@ -14,6 +14,6 @@ package NozamaGui;
 //  state = login
 //  state = user
 //
-//  // instance of NozamaSystem in here
+//  // instance of Model.NozamaSystem in here
 
 }
