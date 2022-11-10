@@ -1,13 +1,12 @@
 package Model;
-
 import DataTypes.IItem;
-
 import java.util.ArrayList;
+import java.util.Iterator;
+
 /*
 * This is a class that is part of a DataTypes.CustomerAccount
 *
 * */
-
 public class Cart {
 
   /**
@@ -15,7 +14,9 @@ public class Cart {
    * @Author Eyan
    */
   Cart(){
+
     CartContainer = new ArrayList<IItem>();
+    Itr = CartContainer.iterator();
   }
 
   /**
@@ -44,7 +45,7 @@ public class Cart {
       }
     }
   }
-  
+
   public void viewCart(){
     for(IItem item : CartContainer){
       item.toString();
@@ -55,18 +56,12 @@ public class Cart {
    * Tells Model.NozamaSystem to process payment And remove items from SellerAccount inventory
    */
   public void checkout(){
-
-    // Model.NozamaSystem.ProcessPayment(/*Final discounted price goes here*/);  // returns true or false to see if payment continues thorough.
-
-    // destroy cart. No longer needed.
-
+    //TODO Model.NozamaSystem.ProcessPayment(/*Final discounted price goes here*/);  // returns true or false to see if payment continues thorough.
+    //TODO destroy cart. No longer needed.
   }
-  
-  
-
-
 
   private ArrayList<IItem> CartContainer;
+  private Iterator<IItem> Itr;//  We could use the iterator to traverse our CartContainer list.
   private float total;
   private float discount;
 
