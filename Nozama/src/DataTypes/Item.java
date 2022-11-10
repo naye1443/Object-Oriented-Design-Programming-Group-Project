@@ -1,3 +1,5 @@
+package DataTypes;
+
 public class Item implements IItem
 {
     private String ID, name, price, description;
@@ -12,7 +14,7 @@ public class Item implements IItem
 
     @Override
     public String toString() {
-        return "Item{" +
+        return "DataTypes.Item{" +
                 "ID='" + ID + '\'' +
                 ", name='" + name + '\'' +
                 ", price='" + price + '\'' +
