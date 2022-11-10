@@ -22,5 +22,11 @@ public class NozamaTest
         System.out.println();
         System.out.println("Hello, welcome to Nozama!");
 
+
+        Cart c = new Cart();
+        Item i = new Item("99", "carrots", "33","carrots gone bad");
+        c.addItem(i);
+        System.out.println(c.getCart());
+
     }
 }
