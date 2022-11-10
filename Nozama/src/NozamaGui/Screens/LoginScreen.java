@@ -46,6 +46,7 @@ public class LoginScreen extends JDialog
                 {
                     IAccount account = user.getAccount();
                     account.OnLogIn();
+                    LoginScreen.this.dispose();
                 }
                 else
                 {
@@ -56,7 +57,8 @@ public class LoginScreen extends JDialog
         });
 
 
-        setVisible(true); // This line must be after the action listeners
+        instance.informView(LoginScreen.this);
+        //setVisible(true); // This line must be after the action listeners
     }
 
     private void showErrorMessage(LoginScreen loginScreen)
