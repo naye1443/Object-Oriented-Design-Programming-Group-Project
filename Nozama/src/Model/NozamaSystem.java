@@ -2,11 +2,13 @@ package Model;
 
 import DataTypes.Item;
 import DataTypes.User;
+import NozamaGui.View;
 import ReadWrite.JsonHandler;
 
 import ReadWrite.Json.JSONArray;
 import ReadWrite.Json.JSONObject;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class NozamaSystem
@@ -104,6 +106,11 @@ public class NozamaSystem
         return inventory;
     }
 
+    public void informView(Window screen)
+    {
+        view.showScreen(screen);
+    }
+
     private static NozamaSystem instance;
     private JsonHandler jsonHandler = new JsonHandler();
 
@@ -112,5 +119,7 @@ public class NozamaSystem
 
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<Item> inventory = new ArrayList<>();
+
+    private View view = new View();
 
 }
