@@ -3,8 +3,9 @@ package Model;
 import DataTypes.Item;
 import DataTypes.User;
 import ReadWrite.JsonHandler;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+
+import ReadWrite.Json.JSONArray;
+import ReadWrite.Json.JSONObject;
 
 import java.util.ArrayList;
 
