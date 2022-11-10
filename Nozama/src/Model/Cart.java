@@ -13,10 +13,8 @@ public class Cart {
    * Constructor
    * @Author Eyan
    */
-  Cart(){
-
+  public Cart(){
     CartContainer = new ArrayList<IItem>();
-    Itr = CartContainer.iterator();
   }
 
   /**
@@ -30,9 +28,7 @@ public class Cart {
    * Add a new item to the Arraylist
    * @param newItem DataTypes.IItem to add to cart
    */
-  public void addItem(IItem newItem){
-    CartContainer.add(newItem);
-  }
+  public void addItem(IItem newItem){CartContainer.add(newItem);}
 
   /**
    * Removes DataTypes.IItem from CartContainer
@@ -61,7 +57,6 @@ public class Cart {
   }
 
   private ArrayList<IItem> CartContainer;
-  private Iterator<IItem> Itr;//  We could use the iterator to traverse our CartContainer list.
   private float total;
   private float discount;
 

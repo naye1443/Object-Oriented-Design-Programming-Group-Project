@@ -1,11 +1,13 @@
 package DataTypes;
 
 import DataTypes.User;
+import Model.Cart;
 import Model.NozamaSystem;
 
 public class CustomerAccount implements IAccount
 {
     User accountUser;
+    private Cart currCart;
 
     /**
      * Constructor
@@ -14,6 +16,7 @@ public class CustomerAccount implements IAccount
     public CustomerAccount(User user)
     {
         this.accountUser = user;
+        this.currCart = new Cart();
     }
 
 //    private User userinstance;
@@ -36,6 +39,7 @@ public class CustomerAccount implements IAccount
     }
 
     // add to cart
+
 
     // get inventory
 
