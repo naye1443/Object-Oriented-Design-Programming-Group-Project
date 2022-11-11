@@ -37,7 +37,6 @@ public class Item implements IItem
     }
 
     /**
-     *
      * @return returns price of item
      */
     public String getPrice(){
@@ -45,7 +44,8 @@ public class Item implements IItem
     }
 
     @Override
-    public Item bundleItem() {
-        return null;
+    public Bundle bundleItem(IItem ... items)
+    {
+        return new Bundle(items);
     }
 }
