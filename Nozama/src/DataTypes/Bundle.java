@@ -12,43 +12,47 @@ public class Bundle implements IItem{
     /**
      * Instantiate itemList array.
      */
-    Bundle() {
-        this.itemList = new ArrayList<IItem>();
-    }
-
-    /**
-     * @param addItem - item to be appended to itemList.
-     */
-    public void bundleItem(IItem addItem){
-        this.itemList.add(addItem);
-    }
-
-    /**
-     * Remove an item from a bundle by index.
-     * @param removeItem - item to be removed
-     */
-    public void removeItem(IItem removeItem){
-        //TODO:  Create precondition
-        for(IItem item : this.itemList){
-            if(item.equals(removeItem)) {
-                this.itemList.remove(item);
-            }
+    public Bundle(IItem ... items)
+    {
+        for (IItem item : items)
+        {
+            itemList.add(item);
         }
-    }
-    /**
-     * Getter Method, returns bundle.
-     * @return - returns a list of bundles
-     */
-    public IItem getBundle(){
-        //TODO:  Create precondition
-        //Append a IItem bundle as an element to cartcontainer arrayList.
-        return (IItem) this.itemList;
+
     }
 
     @Override
-    public Item bundleItem() {
-        return null;
+    public Bundle bundleItem(IItem ... items)
+    {
+        return new Bundle(items);
     }
-    private ArrayList<IItem> itemList;
-    private float bundleCost;
+
+    @Override
+    public String toString()
+    {
+        String output = "Bundle: \n";
+
+        for (IItem item : itemList)
+        {
+            output += item.toString();
+            output += "\n";
+        }
+        return output;
+    }
+
+    public String getPrice()
+    {
+        float sum = 0;
+        for (IItem item : itemList)
+        {
+            sum += Float.parseFloat(item.getPrice());
+            item.getPrice();
+        }
+
+
+        return Float.toString(sum);
+    }
+
+    private ArrayList<IItem> itemList = new ArrayList<>();
+    private String bundleCost;
 }
