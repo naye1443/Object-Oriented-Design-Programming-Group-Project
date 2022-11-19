@@ -69,12 +69,13 @@ public class NozamaSystem
 
         JSONObject values = (JSONObject) item.get(key);
 
-        String name, price, description;
+        String name, price, description, quantity;
         name = (String) values.get("name");
         price = (String) values.get("price");
         description = (String) values.get("description");
+        quantity = (String) values.get("quantity");
 
-        inventory.add(new Item(key, name, price, description));
+        inventory.add(new Item(key, name, price, description, quantity));
     }
 
     private void loadInventoryFromJson()
