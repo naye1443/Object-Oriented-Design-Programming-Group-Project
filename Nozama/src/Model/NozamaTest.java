@@ -27,11 +27,11 @@ public class NozamaTest
 
 
         Cart c = new Cart();
-        Item i = new Item("99", "carrots", "33","carrotse bad");
-        Item j = new Item("100", "carrots", "38","cats gonbad");
-        Item k = new Item("101", "cas", "35","carrotsgone bad");
-        Item y = new Item("300", "catetes", "85"," bad");
-        Item z = new Item("181", "casds", "5","cargone ");
+        Item i = new Item("99", "carrots", "33","carrotse bad", "1");
+        Item j = new Item("100", "carrots", "38","cats gonbad", "1");
+        Item k = new Item("101", "cas", "35","carrotsgone bad", "1");
+        Item y = new Item("300", "catetes", "85"," bad", "1");
+        Item z = new Item("181", "casds", "5","cargone ", "1");
         Bundle a = new Bundle(y, z);
         c.addItem(i);
         System.out.println(c.getCart());
