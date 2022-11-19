@@ -1,22 +1,22 @@
 package Model;
+import DataTypes.ICoupon;
 import DataTypes.IItem;
+
+
+
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /*
-* This is a class that is part of a DataTypes.CustomerAccount
-*
-* */
-public class Cart {
-
+ * This is a class that is part of a DataTypes.CustomerAccount
+ *
+ * */
+public class Cart implements ICoupon {
   /**
    * Constructor
    * @Author Eyan
    */
-  Cart(){
-
+  public Cart(){
     CartContainer = new ArrayList<IItem>();
-    Itr = CartContainer.iterator();
   }
 
   /**
@@ -36,20 +36,28 @@ public class Cart {
 
   /**
    * Removes DataTypes.IItem from CartContainer
-   * @param removedItem
+   * @param removedItem - item or bundle to be removed.
    */
   public void removeItem(IItem removedItem){
-    for(IItem item : CartContainer){
-      if(item.equals(removedItem)) {
-        CartContainer.remove(item);
-      }
-    }
+    CartContainer.removeIf(item -> item.equals(removedItem));
   }
 
   public void viewCart(){
     for(IItem item : CartContainer){
-      item.toString();
+      System.out.println(item.toString());
     }
+  }
+
+  /**
+   * @Author: Jamar
+   * Adds each item/bundle in cart.
+   * @return - Grand total for each item/bundle in cart.
+   */
+  public float getTotal(){
+    for(IItem item : CartContainer){
+      total += Float.parseFloat(item.getPrice());
+    }
+    return total;
   }
 
   /**
@@ -60,9 +68,27 @@ public class Cart {
     //TODO destroy cart. No longer needed.
   }
 
-  private ArrayList<IItem> CartContainer;
-  private Iterator<IItem> Itr;//  We could use the iterator to traverse our CartContainer list.
-  private float total;
-  private float discount;
+  /**
+   * @Author: Jamar (Decorator Pattern).
+   * @return: total for concrete class used by the decorator.
+   */
+
+  public String getDescription() {
+    return "Basic cart no coupons added yet";
+  }
+
+
+  public float AddFivePercentCoupon() {
+    return total;
+  }
+
+
+  public float AddTenPercentCoupon() {
+    return total;
+  }
+
+  protected ArrayList<IItem> CartContainer;
+  public float total;
+
 
 }

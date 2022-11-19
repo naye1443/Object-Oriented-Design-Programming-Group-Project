@@ -1,8 +1,12 @@
 package Model;
 
+import DataTypes.ApplyTenOff;
+import DataTypes.ApplyFiveOff;
 import DataTypes.Bundle;
 import DataTypes.Item;
+import DataTypes.ICoupon;
 import Model.NozamaSystem;
+
 
 public class NozamaTest
 {
@@ -10,8 +14,6 @@ public class NozamaTest
         NozamaSystem instance = NozamaSystem.getInstance();
 
         System.out.println(instance.logIn("username", "password"));
-
-
 
         System.out.println();
 
@@ -44,6 +46,39 @@ public class NozamaTest
         System.out.println(b.getPrice());
 
 
+        //Add items to Cart
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        c.addItem(i);
+
+        //Instantiate bundles
+        Bundle b1 = i.bundleItem(j, k, a);
+        Bundle b2 = i.bundleItem(a, k);
+        System.out.println();
+
+        //Add bundles to Cart
+        c.addItem(b1);
+        c.addItem(b2);
+
+        //gets price of the bundle
+        System.out.println(b1.getPrice());
+        c.getTotal();
+        System.out.println();
+
+        //Remove getCart or viewCart?
+        c.viewCart();
+        System.out.println();
+
+        //Test getTotal()
+        System.out.println("Original Price: ");
+        System.out.println(c.getTotal());
+
+        //Decorator Testing
+        System.out.println();
+        ICoupon testing = new ApplyTenOff(new ApplyFiveOff(c));
+        System.out.println(testing.getDescription());
+        System.out.println(testing.AddTenPercentCoupon());
 
     }
 }

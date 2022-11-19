@@ -10,11 +10,17 @@ public class CustomerDashboard extends JFrame
 {
     private JPanel CustomerDashboardPanel;
     private JList feed;
+    private JTextPane nozamaTextPane;
+    private JButton button1;
+    private JButton button2;
+    private JButton cartButton;
     private DefaultListModel feedModel;
 
 
     public CustomerDashboard()
     {
+        nozamaTextPane.setText("NOZAMA\n\nWelcome: " + NozamaSystem.getInstance().getCurrentUser().getUsername());
+
         setTitle("Customer Dashboard");
         setContentPane(CustomerDashboardPanel);
         setMinimumSize(new Dimension(500, 429));
