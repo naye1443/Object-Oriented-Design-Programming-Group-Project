@@ -11,10 +11,23 @@ import ReadWrite.Json.JSONObject;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * This class manages all the data of the program.
+ * This class implements the Singleton Pattern
+ * @author Jordan Diaz
+ * */
 public class NozamaSystem
 {
+    /**
+     * Private constructor
+     * @author Jordan Diaz
+     * */
     private NozamaSystem(){}
 
+    /**
+     * This method gets the current instance of this class
+     *
+     * */
     public static NozamaSystem getInstance()
     {
         if (instance == null)
@@ -99,11 +112,20 @@ public class NozamaSystem
         jsonHandler.writeToJson("Nozama/testdata/users.json", output);
     }
 
-
     public ArrayList<Item> getInventory()
     {
         loadInventoryFromJson();
         return inventory;
+    }
+
+    public void setCurrentUser(User user)
+    {
+        currentUser = user;
+    }
+
+    public User getCurrentUser()
+    {
+        return currentUser;
     }
 
     public void informView(Window screen)
@@ -121,5 +143,7 @@ public class NozamaSystem
     private ArrayList<Item> inventory = new ArrayList<>();
 
     private View view = new View();
+
+    private User currentUser = null;
 
 }
