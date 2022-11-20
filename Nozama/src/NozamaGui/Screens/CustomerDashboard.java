@@ -9,8 +9,10 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class CustomerDashboard extends JFrame
+public class CustomerDashboard extends JDialog
 {
     private JPanel CustomerDashboardPanel;
     private JList feed;
@@ -31,7 +33,7 @@ public class CustomerDashboard extends JFrame
         setContentPane(CustomerDashboardPanel);
         setMinimumSize(new Dimension(500, 429));
         setSize(1200, 700);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         NozamaSystem instance = NozamaSystem.getInstance();
 
@@ -79,11 +81,37 @@ public class CustomerDashboard extends JFrame
                 }
 
 
+            }
+        });
 
+
+        // Cart Button
+        cartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                CartScreen screen = new CartScreen(instance.getCart());
+                CustomerDashboard.this.dispose();
+            }
+        });
+
+        // Add to Cart Button
+        addToCartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+
+                instance.getInstance().getCart().addItem(instance.getInventory().get(feed.getSelectedIndex()), (Integer) quantitySpinner.getValue());
+
+                JOptionPane.showMessageDialog(CustomerDashboard.this,
+                        "Item Added to Cart:\n Item: " + instance.getInventory().get(feed.getSelectedIndex()).getName() +
+                                "\nQuantity: " + quantitySpinner.getValue(),
+                        "Item Added to Cart", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
         NozamaSystem.getInstance().informView(CustomerDashboard.this); //same thing as setVisible(true); // must be last line
+
 
     }
 

@@ -42,6 +42,11 @@ public class Item implements IItem
         return this.price;
     }
 
+    @Override
+    public boolean isBundle() {
+        return false;
+    }
+
     /**
      * @return returns quantity of item
      * */
