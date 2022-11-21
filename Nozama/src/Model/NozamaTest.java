@@ -33,7 +33,7 @@ public class NozamaTest
         Item y = new Item("300", "catetes", "85"," bad", "1");
         Item z = new Item("181", "casds", "5","cargone ", "1");
         Bundle a = new Bundle(y, z);
-        c.addItem(i);
+        c.addItem(i, 1);
         System.out.println(c.getCart());
 
 
@@ -50,7 +50,7 @@ public class NozamaTest
         System.out.println();
         System.out.println();
         System.out.println();
-        c.addItem(i);
+        c.addItem(i, 1);
 
         //Instantiate bundles
         Bundle b1 = i.bundleItem(j, k, a);
@@ -58,8 +58,8 @@ public class NozamaTest
         System.out.println();
 
         //Add bundles to Cart
-        c.addItem(b1);
-        c.addItem(b2);
+        c.addItem(b1, 1);
+        c.addItem(b2, 1);
 
         //gets price of the bundle
         System.out.println(b1.getPrice());

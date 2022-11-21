@@ -17,6 +17,7 @@ public class Cart implements ICoupon {
    */
   public Cart(){
     CartContainer = new ArrayList<IItem>();
+    CartQuantities = new ArrayList<>();
   }
 
   /**
@@ -30,8 +31,9 @@ public class Cart implements ICoupon {
    * Add a new item to the Arraylist
    * @param newItem DataTypes.IItem to add to cart
    */
-  public void addItem(IItem newItem){
+  public void addItem(IItem newItem, int quantity){
     CartContainer.add(newItem);
+    CartQuantities.add(quantity);
   }
 
   /**
@@ -58,6 +60,11 @@ public class Cart implements ICoupon {
       total += Float.parseFloat(item.getPrice());
     }
     return total;
+  }
+
+  public int getQuantity(int index)
+  {
+    return CartQuantities.get(index);
   }
 
   /**
@@ -88,6 +95,7 @@ public class Cart implements ICoupon {
   }
 
   protected ArrayList<IItem> CartContainer;
+  protected ArrayList<Integer> CartQuantities;
   public float total;
 
 

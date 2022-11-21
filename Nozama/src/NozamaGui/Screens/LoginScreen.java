@@ -39,7 +39,6 @@ public class LoginScreen extends JDialog
                 System.out.println(passwordInput);
 
 
-
                 User user = instance.logIn(usernameInput, passwordInput);
 
                 if (user != null)

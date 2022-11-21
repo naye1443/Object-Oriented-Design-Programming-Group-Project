@@ -119,6 +119,12 @@ public class NozamaSystem
         return inventory;
     }
 
+    public Cart getCart()
+    {
+        return cart;
+    }
+
+
     public void setCurrentUser(User user)
     {
         currentUser = user;
@@ -146,5 +152,7 @@ public class NozamaSystem
     private View view = new View();
 
     private User currentUser = null;
+
+    private Cart cart = new Cart();
 
 }
