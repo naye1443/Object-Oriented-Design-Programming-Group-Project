@@ -5,4 +5,6 @@ public interface IItem
     Bundle bundleItem(IItem ... items);
 
     String getPrice();
+
+    boolean isBundle();
 }

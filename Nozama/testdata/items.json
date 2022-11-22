@@ -3,14 +3,16 @@
     "000": {
       "name": "T-Shirt",
       "price": "15.00",
-      "description" : "It's a T-shirt bro... calm down"
+      "description" : "It's a T-shirt bro... calm down",
+      "quantity" : "15"
     }
   },
   {
     "001": {
       "name": "Poster",
       "price": "30.00",
-      "description" : "It's a Poster bro..."
+      "description" : "It's a Poster bro...",
+      "quantity" : "10"
     }
   }
 ]

@@ -2,24 +2,23 @@ package DataTypes;
 
 public class Item implements IItem
 {
-    private String ID, name, price, description;
+    private String ID, name, price, description, quantity;
 
-    public Item(String id, String name, String price, String description)
+    public Item(String id, String name, String price, String description, String quantity)
     {
         this.ID = id;
         this.name = name;
         this.price = price;
         this.description = description;
+        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
-        return "DataTypes.Item{" +
-                "ID='" + ID + '\'' +
-                ", name='" + name + '\'' +
-                ", price='" + price + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return "Item: " + name + " \n" +
+                "Price: $" + price + " \n" +
+                "Description: " + description + " \n" +
+                "Quantity: " + quantity + " \n";
     }
 
     /**
@@ -42,6 +41,16 @@ public class Item implements IItem
     public String getPrice(){
         return this.price;
     }
+
+    @Override
+    public boolean isBundle() {
+        return false;
+    }
+
+    /**
+     * @return returns quantity of item
+     * */
+    public String getQuantity() { return this.quantity; }
 
     @Override
     public Bundle bundleItem(IItem ... items)

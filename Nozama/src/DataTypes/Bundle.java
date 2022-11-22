@@ -53,6 +53,11 @@ public class Bundle implements IItem{
         return Float.toString(sum);
     }
 
+    @Override
+    public boolean isBundle() {
+        return true;
+    }
+
     private ArrayList<IItem> itemList = new ArrayList<>();
     private String bundleCost;
 }
