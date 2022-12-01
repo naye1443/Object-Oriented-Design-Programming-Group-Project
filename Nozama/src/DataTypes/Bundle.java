@@ -58,6 +58,11 @@ public class Bundle implements IItem{
         return true;
     }
 
+    @Override
+    public int getQuantity() {
+        return 0;
+    }
+
     private ArrayList<IItem> itemList = new ArrayList<>();
     private String bundleCost;
 }

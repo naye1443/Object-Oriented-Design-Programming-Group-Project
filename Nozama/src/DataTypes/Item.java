@@ -1,5 +1,7 @@
 package DataTypes;
 
+import java.util.Objects;
+
 public class Item implements IItem
 {
     private String ID, name, price, description, quantity;
@@ -49,12 +51,24 @@ public class Item implements IItem
 
     /**
      * @return returns quantity of item
-     * */
-    public String getQuantity() { return this.quantity; }
+     */
+    public int getQuantity() { return Integer.parseInt(this.quantity); }
 
     @Override
     public Bundle bundleItem(IItem ... items)
     {
         return new Bundle(items);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Item item)) return false;
+        return Objects.equals(ID, item.ID) && Objects.equals(name, item.name) && Objects.equals(price, item.price) && Objects.equals(description, item.description) && Objects.equals(quantity, item.quantity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, name, price, description, quantity);
     }
 }
