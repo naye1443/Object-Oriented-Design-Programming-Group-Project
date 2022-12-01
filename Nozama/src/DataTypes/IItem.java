@@ -7,4 +7,7 @@ public interface IItem
     String getPrice();
 
     boolean isBundle();
+
+    int getQuantity();
+
 }

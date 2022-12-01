@@ -5,7 +5,6 @@ import DataTypes.ApplyFiveOff;
 import DataTypes.Bundle;
 import DataTypes.Item;
 import DataTypes.ICoupon;
-import Model.NozamaSystem;
 
 
 public class NozamaTest
@@ -63,7 +62,7 @@ public class NozamaTest
 
         //gets price of the bundle
         System.out.println(b1.getPrice());
-        c.getTotal();
+        c.calculateTotalFromCart();
         System.out.println();
 
         //Remove getCart or viewCart?
@@ -72,7 +71,7 @@ public class NozamaTest
 
         //Test getTotal()
         System.out.println("Original Price: ");
-        System.out.println(c.getTotal());
+        System.out.println(c.calculateTotalFromCart());
 
         //Decorator Testing
         System.out.println();

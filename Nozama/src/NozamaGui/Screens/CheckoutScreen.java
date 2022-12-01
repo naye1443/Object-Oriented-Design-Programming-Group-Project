@@ -1,0 +1,45 @@
+package NozamaGui.Screens;
+
+import Model.Cart;
+import Model.NozamaSystem;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class CheckoutScreen extends JDialog {
+    private JPanel panel1;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JTextField textField3;
+    private JTextField textField4;
+    private JTextField textField5;
+    private JTextField textField6;
+    private JTextField textField7;
+    private JTextField textField8;
+    private JTextField textField9;
+    private JLabel totalPriceLabel;
+    private JButton submitButton;
+    private JButton cancelButton;
+
+    public CheckoutScreen(Cart cart)
+    {
+        setTitle("Cart");
+        setContentPane(panel1);
+        setMinimumSize(new Dimension(500, 429));
+        setSize(1200, 700);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+        NozamaSystem.getInstance().informView(CheckoutScreen.this); //same thing as setVisible(true); // must be last line
+
+
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CartScreen screen = new CartScreen(NozamaSystem.getInstance().getCart());
+                CheckoutScreen.this.dispose();
+            }
+        });
+    }
+}

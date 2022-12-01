@@ -69,7 +69,7 @@ public class CustomerDashboard extends JDialog
                     return;
                 }
 
-                int quantity = Integer.parseInt(currentItem.getQuantity());
+                int quantity = currentItem.getQuantity();
 
                 if ((int) quantitySpinner.getValue() > quantity)
                 {
@@ -104,9 +104,9 @@ public class CustomerDashboard extends JDialog
                 instance.getInstance().getCart().addItem(instance.getInventory().get(feed.getSelectedIndex()), (Integer) quantitySpinner.getValue());
 
                 JOptionPane.showMessageDialog(CustomerDashboard.this,
-                        "Item Added to Cart:\n Item: " + instance.getInventory().get(feed.getSelectedIndex()).getName() +
+                        instance.getCart().cartMessage + "\n Item: " + instance.getInventory().get(feed.getSelectedIndex()).getName() +
                                 "\nQuantity: " + quantitySpinner.getValue(),
-                        "Item Added to Cart", JOptionPane.INFORMATION_MESSAGE);
+                        instance.getCart().cartMessage, JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
