@@ -2,17 +2,32 @@ package Model;
 
 import DataTypes.Item;
 import DataTypes.User;
+import NozamaGui.View;
 import ReadWrite.JsonHandler;
 
 import ReadWrite.Json.JSONArray;
 import ReadWrite.Json.JSONObject;
 
+import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * This class manages all the data of the program.
+ * This class implements the Singleton Pattern
+ * @author Jordan Diaz
+ * */
 public class NozamaSystem
 {
+    /**
+     * Private constructor
+     * @author Jordan Diaz
+     * */
     private NozamaSystem(){}
 
+    /**
+     * This method gets the current instance of this class
+     *
+     * */
     public static NozamaSystem getInstance()
     {
         if (instance == null)
@@ -54,12 +69,13 @@ public class NozamaSystem
 
         JSONObject values = (JSONObject) item.get(key);
 
-        String name, price, description;
+        String name, price, description, quantity;
         name = (String) values.get("name");
         price = (String) values.get("price");
         description = (String) values.get("description");
+        quantity = (String) values.get("quantity");
 
-        inventory.add(new Item(key, name, price, description));
+        inventory.add(new Item(key, name, price, description, quantity));
     }
 
     private void loadInventoryFromJson()
@@ -97,11 +113,31 @@ public class NozamaSystem
         jsonHandler.writeToJson("Nozama/testdata/users.json", output);
     }
 
-
     public ArrayList<Item> getInventory()
     {
         loadInventoryFromJson();
         return inventory;
+    }
+
+    public Cart getCart()
+    {
+        return cart;
+    }
+
+
+    public void setCurrentUser(User user)
+    {
+        currentUser = user;
+    }
+
+    public User getCurrentUser()
+    {
+        return currentUser;
+    }
+
+    public void informView(Window screen)
+    {
+        view.showScreen(screen);
     }
 
     private static NozamaSystem instance;
@@ -112,5 +148,11 @@ public class NozamaSystem
 
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<Item> inventory = new ArrayList<>();
+
+    private View view = new View();
+
+    private User currentUser = null;
+
+    private Cart cart = new Cart();
 
 }
