@@ -1,12 +1,14 @@
 package DataTypes;
 
 import DataTypes.User;
+import Model.Cart;
 import Model.NozamaSystem;
 import NozamaGui.Screens.CustomerDashboard;
 
 public class CustomerAccount implements IAccount
 {
     User accountUser;
+    private Cart currCart;
 
     /**
      * Constructor
@@ -15,6 +17,7 @@ public class CustomerAccount implements IAccount
     public CustomerAccount(User user)
     {
         this.accountUser = user;
+        this.currCart = new Cart();
     }
 
 
@@ -27,6 +30,7 @@ public class CustomerAccount implements IAccount
     }
 
     // add to cart
+
 
     // get inventory
 

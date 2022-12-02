@@ -5,7 +5,6 @@ import DataTypes.IItem;
 
 
 import java.util.ArrayList;
-
 /*
  * This is a class that is part of a DataTypes.CustomerAccount
  *
@@ -124,7 +123,6 @@ public class Cart implements ICoupon {
     //TODO Model.NozamaSystem.ProcessPayment(/*Final discounted price goes here*/);  // returns true or false to see if payment continues thorough.
     //TODO destroy cart. No longer needed.
   }
-
   /**
    * @Author: Jamar (Decorator Pattern).
    * @return: total for concrete class used by the decorator.
@@ -147,6 +145,5 @@ public class Cart implements ICoupon {
   public float total;
 
   public String cartMessage;
-
 
 }
