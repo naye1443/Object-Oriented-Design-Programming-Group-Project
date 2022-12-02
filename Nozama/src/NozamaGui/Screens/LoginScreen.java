@@ -21,7 +21,7 @@ public class LoginScreen extends JDialog
         super(parent); //This line must always be first statement in constructor
         setTitle("Login");
         setContentPane(loginPanel);
-        setMinimumSize(new Dimension(450, 474));
+        setMinimumSize(new Dimension(800, 500));
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -39,13 +39,14 @@ public class LoginScreen extends JDialog
                 System.out.println(passwordInput);
 
 
-
                 User user = instance.logIn(usernameInput, passwordInput);
 
                 if (user != null)
                 {
+                    instance.setCurrentUser(user);
                     IAccount account = user.getAccount();
                     account.OnLogIn();
+                    LoginScreen.this.dispose();
                 }
                 else
                 {
@@ -56,7 +57,8 @@ public class LoginScreen extends JDialog
         });
 
 
-        setVisible(true); // This line must be after the action listeners
+        instance.informView(LoginScreen.this);
+        //setVisible(true); // This line must be after the action listeners
     }
 
     private void showErrorMessage(LoginScreen loginScreen)

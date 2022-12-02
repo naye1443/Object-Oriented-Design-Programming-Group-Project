@@ -3,8 +3,7 @@ package DataTypes;
 public class SellerAccount implements IAccount{
 
 
-    User accountUser;
-
+    public User accountUser;
     /**
      * Constructor
      * @author Jordan Diaz
@@ -18,6 +17,7 @@ public class SellerAccount implements IAccount{
     public void OnLogIn()
     {
         System.out.println("A seller has logged in");
-
     }
+
+
 }
