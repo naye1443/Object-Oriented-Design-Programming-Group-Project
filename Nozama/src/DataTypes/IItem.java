@@ -2,12 +2,16 @@ package DataTypes;
 
 public interface IItem
 {
-    Bundle bundleItem(IItem ... items);
+//    Bundle bundleItem(IItem ... items);
 
-    String getPrice();
+    String getSellPrice();
 
     boolean isBundle();
 
     int getQuantity();
+
+    SellerAccount getVendor();
+
+    String getName();
 
 }

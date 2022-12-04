@@ -25,11 +25,15 @@ public class CheckoutScreen extends JDialog {
 
     public CheckoutScreen(Cart cart)
     {
-        setTitle("Cart");
+        setTitle("Checkout");
         setContentPane(panel1);
         setMinimumSize(new Dimension(500, 429));
         setSize(1200, 700);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+        NozamaSystem instance = NozamaSystem.getInstance();
+
+        totalPriceLabel.setText("Total: $" + String.format("%.02f", instance.getCart().getTotalWithCoupons()));
 
         NozamaSystem.getInstance().informView(CheckoutScreen.this); //same thing as setVisible(true); // must be last line
 
