@@ -1,7 +1,6 @@
 package Model;
 
-import DataTypes.Item;
-import DataTypes.User;
+import DataTypes.*;
 import NozamaGui.View;
 import ReadWrite.JsonHandler;
 
@@ -10,6 +9,7 @@ import ReadWrite.Json.JSONObject;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * This class manages all the data of the program.
@@ -38,6 +38,35 @@ public class NozamaSystem
         return instance;
     }
 
+    private void parseProfitsObject(JSONObject profitObj)
+    {
+        String key = profitObj.keySet().toString();
+        key = key.substring(1, key.length() - 1); // removes the [], results in: "000"
+
+        JSONObject values = (JSONObject) profitObj.get(key);
+
+        String sprofit, srevenues, scosts;
+        sprofit = (String) values.get("profit");
+        srevenues = (String) values.get("revenues");
+        scosts = (String) values.get("costs");
+
+        float profit, revenues, costs;
+        profit = Float.parseFloat(sprofit);
+        revenues = Float.parseFloat(srevenues);
+        costs = Float.parseFloat(scosts);
+
+        vendors.add(new SellerAccount(key, profit, revenues, costs));
+
+    }
+
+    private void loadVendorsFromJson()
+    {
+        vendors.clear();
+
+        vendorData = jsonHandler.getJSONArrayFromJson("Nozama/testdata/profits.json");
+        vendorData.forEach(vendor -> parseProfitsObject((JSONObject) vendor));
+    }
+
     private void parseUserDataObject(JSONObject user)
     {
         String key = user.keySet().toString(); // gets the key in the form: "[000]"
@@ -62,20 +91,68 @@ public class NozamaSystem
         userData.forEach( user -> parseUserDataObject((JSONObject) user));
     }
 
+    private Item parseBundleItem(JSONObject bundleItem, String vendor)
+    {
+        String key = bundleItem.keySet().toString();
+        key = key.substring(1, key.length() - 1);
+
+        JSONObject values = (JSONObject) bundleItem.get(key);
+
+        String name, invoicePrice,sellPrice, description, quantity;
+        name = (String) values.get("name");
+        invoicePrice = (String) values.get("invoice_price");
+        sellPrice = (String) values.get("sell_price");
+        description = (String) values.get("description");
+        quantity = (String) values.get("quantity");
+
+        return new Item(key, name, invoicePrice, sellPrice, description, quantity, vendor);
+
+    }
+
     private void parseInventoryDataObject(JSONObject item)
     {
         String key = item.keySet().toString(); // gets the key in the form: "[000]"
         key = key.substring(1, key.length() - 1); // removes the [], results in: "000"
 
-        JSONObject values = (JSONObject) item.get(key);
+        if (key.charAt(0) == 'b')
+        {
+            JSONObject values = (JSONObject) item.get(key);
 
-        String name, price, description, quantity;
-        name = (String) values.get("name");
-        price = (String) values.get("price");
-        description = (String) values.get("description");
-        quantity = (String) values.get("quantity");
+            String bundleName, vendor, quantity;
 
-        inventory.add(new Item(key, name, price, description, quantity));
+            bundleName = (String) values.get("bundleName");
+            vendor = (String) values.get("vendor");
+            quantity = (String) values.get("quantity");
+
+            Bundle bundle = new Bundle(bundleName, vendor, quantity);
+
+            JSONArray bundledItems = (JSONArray) values.get("items");
+
+            for (Object obj : bundledItems)
+            {
+                bundle.addItem(parseBundleItem((JSONObject) obj, vendor));
+            }
+
+            inventory.add(bundle);
+
+        }
+        else
+        {
+            JSONObject values = (JSONObject) item.get(key);
+
+            String name, invoicePrice,sellPrice, description, quantity, vendor;
+            name = (String) values.get("name");
+            invoicePrice = (String) values.get("invoice_price");
+            sellPrice = (String) values.get("sell_price");
+            description = (String) values.get("description");
+            quantity = (String) values.get("quantity");
+            vendor = (String) values.get("vendor");
+
+
+            inventory.add(new Item(key, name, invoicePrice, sellPrice, description, quantity, vendor));
+        }
+
+
     }
 
     private void loadInventoryFromJson()
@@ -90,6 +167,8 @@ public class NozamaSystem
     public User logIn(String username, String password)
     {
         loadUsersFromJson();
+        loadVendorsFromJson();
+        loadInventoryFromJson();
         for (User user : users)
         {
             if (user.getUsername().equals(username) && user.getPassword().equals(password))
@@ -113,10 +192,38 @@ public class NozamaSystem
         jsonHandler.writeToJson("Nozama/testdata/users.json", output);
     }
 
-    public ArrayList<Item> getInventory()
+    public void updateProfitsJSON()
+    {
+        JSONArray output = new JSONArray();
+        for (SellerAccount vendor : vendors)
+        {
+            output.add(vendor.toJSONObject());
+        }
+        jsonHandler.writeToJson("Nozama/testdata/profits.json", output);
+    }
+
+    public ArrayList<IItem> getInventory()
     {
         loadInventoryFromJson();
         return inventory;
+    }
+
+    public ArrayList<SellerAccount> getVendors()
+    {
+        loadVendorsFromJson();
+        return vendors;
+    }
+
+    public SellerAccount getSeller(String username)
+    {
+        loadVendorsFromJson();
+        for (SellerAccount vendor : vendors)
+        {
+            if (vendor.getUserName().equals(username)){
+                return vendor;
+            }
+        }
+        return null;
     }
 
     public Cart getCart()
@@ -146,8 +253,12 @@ public class NozamaSystem
     private JSONArray userData;
     private JSONArray inventoryData;
 
+    private JSONArray vendorData;
+
     private ArrayList<User> users = new ArrayList<>();
-    private ArrayList<Item> inventory = new ArrayList<>();
+    private ArrayList<IItem> inventory = new ArrayList<>();
+
+    private ArrayList<SellerAccount> vendors = new ArrayList<>();
 
     private View view = new View();
 

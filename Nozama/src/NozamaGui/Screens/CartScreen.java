@@ -1,7 +1,6 @@
 package NozamaGui.Screens;
 
-import DataTypes.IItem;
-import DataTypes.Item;
+import DataTypes.*;
 import Model.Cart;
 import Model.NozamaSystem;
 
@@ -15,7 +14,6 @@ import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
 
 public class CartScreen extends JFrame
 {
@@ -44,7 +42,7 @@ public class CartScreen extends JFrame
 
         cartTree.setModel(treeContents);
 
-        priceLabel.setText("Total: $" + String.format("%.02f", NozamaSystem.getInstance().getCart().calculateTotalFromCart()));
+        priceLabel.setText("Total: $" + String.format("%.02f", NozamaSystem.getInstance().getCart().getTotal()));
 
         cartTree.addTreeSelectionListener(new TreeSelectionListener() {
             @Override
@@ -118,7 +116,6 @@ public class CartScreen extends JFrame
 
                 DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) cartTree.getLastSelectedPathComponent();
 
-
                 if (selectedNode == null)
                 {
                     spinner1.setValue(1);
@@ -152,9 +149,86 @@ public class CartScreen extends JFrame
             }
         });
 
+        apply5CouponCheckBox.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e)
+            {
+                ICoupon coupon;
+                NozamaSystem instance = NozamaSystem.getInstance();
+                if (apply5CouponCheckBox.isSelected())
+                {
+                    coupon = new ApplyFiveOff(instance.getCart());
 
+                    if (apply10CouponCheckBox.isSelected())
+                    {
+                        coupon = new ApplyFiveOff(new ApplyTenOff(instance.getCart()));
+                    }
+                    priceLabel.setText("Total: $" + String.format("%.02f", coupon.getTotal()));
+                    instance.getCart().setTotalWithCoupons(coupon.getTotal());
+
+                }
+                else
+                {
+                    if (apply10CouponCheckBox.isSelected())
+                    {
+                        coupon = new ApplyTenOff(instance.getCart());
+                        priceLabel.setText("Total: $" + String.format("%.02f", coupon.getTotal()));
+                        instance.getCart().setTotalWithCoupons(coupon.getTotal());
+                    }
+                    else
+                    {
+                        priceLabel.setText("Total: $" + String.format("%.02f", instance.getCart().getTotal()));
+                        instance.getCart().setTotalWithCoupons(instance.getCart().getTotal());
+
+                    }
+
+                }
+
+
+            }
+        });
+
+        apply10CouponCheckBox.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e)
+            {
+
+                ICoupon coupon;
+                NozamaSystem instance = NozamaSystem.getInstance();
+                if (apply10CouponCheckBox.isSelected())
+                {
+                    coupon = new ApplyTenOff(instance.getCart());
+
+                    if (apply5CouponCheckBox.isSelected())
+                    {
+                        coupon = new ApplyTenOff(new ApplyFiveOff(instance.getCart()));
+                    }
+                    priceLabel.setText("Total: $" + String.format("%.02f", coupon.getTotal()));
+                    instance.getCart().setTotalWithCoupons(coupon.getTotal());
+
+                }
+                else
+                {
+                    if (apply5CouponCheckBox.isSelected())
+                    {
+                        coupon = new ApplyFiveOff(instance.getCart());
+                        priceLabel.setText("Total: $" + String.format("%.02f", coupon.getTotal()));
+                        instance.getCart().setTotalWithCoupons(coupon.getTotal());
+                    }
+                    else
+                    {
+                        priceLabel.setText("Total: $" + String.format("%.02f", instance.getCart().getTotal()));
+                        instance.getCart().setTotalWithCoupons(instance.getCart().getTotal());
+                    }
+
+                }
+
+
+            }
+        });
 
         NozamaSystem.getInstance().informView(CartScreen.this); //same thing as setVisible(true); // must be last line
+
 
 
     }
@@ -169,6 +243,15 @@ public class CartScreen extends JFrame
         {
             if (item.isBundle())
             {
+                Bundle bundle = (Bundle) item;
+                DefaultMutableTreeNode temp = new DefaultMutableTreeNode(bundle.getName() + " (" + cart.getQuantity(count) + ")");
+                rootNode.add(temp);
+
+                for (Item bundleItem : bundle.getItemList())
+                {
+                    DefaultMutableTreeNode node = new DefaultMutableTreeNode(bundleItem.getName());
+                    temp.add(node);
+                }
 
             }
             else

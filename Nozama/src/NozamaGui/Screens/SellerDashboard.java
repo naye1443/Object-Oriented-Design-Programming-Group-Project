@@ -1,4 +1,184 @@
 package NozamaGui.Screens;
 
-public class SellerDashboard {
+import DataTypes.Bundle;
+import DataTypes.IItem;
+import DataTypes.Item;
+import DataTypes.SellerAccount;
+import Model.NozamaSystem;
+
+import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+public class SellerDashboard extends JDialog
+{
+    private JPanel mainPanel;
+    private JTree itemTree;
+    private JButton addNewItemListingButton;
+    private JButton addNewBundleListingButton;
+    private JTextArea textArea1;
+    private JButton editButton;
+    private JButton deleteButton;
+    private JLabel statsLabel;
+    private JLabel testLabel;
+
+    public SellerDashboard(SellerAccount vendor)
+    {
+        setTitle("Customer Dashboard");
+        setContentPane(mainPanel);
+        setMinimumSize(new Dimension(500, 429));
+        setSize(1200, 700);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+        NozamaSystem instance = NozamaSystem.getInstance();
+
+        currentVendor = vendor;
+
+        statsLabel.setText("Total Profit: $" +
+                String.format("%.2f", currentVendor.getProfit()) + "               " +
+                "Revenues: $" + String.format("%.2f", currentVendor.getRevenues()) + "               " +
+                "Costs: $" + String.format("%.2f", currentVendor.getCosts()) );
+
+        DefaultTreeModel treeContents = setupTreeContents();
+
+        itemTree.setModel(treeContents);
+
+        itemTree.addTreeSelectionListener(new TreeSelectionListener() {
+            @Override
+            public void valueChanged(TreeSelectionEvent e)
+            {
+                DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) itemTree.getLastSelectedPathComponent();
+
+                if (selectedNode.equals(itemTree.getModel().getRoot()))
+                    return;
+
+                if (selectedNode.getParent().equals(itemTree.getModel().getRoot()))
+                {
+                    DefaultMutableTreeNode node = (DefaultMutableTreeNode) itemTree.getSelectionPath().getLastPathComponent();
+                    textArea1.setText(String.valueOf(listings.get(selectedNode.getParent().getIndex(node))));
+                }
+            }
+        });
+
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                //Must edit one item at a time
+
+                if (isEditing)
+                    return;
+
+                DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) itemTree.getLastSelectedPathComponent();
+
+                if (selectedNode.equals(itemTree.getModel().getRoot()))
+                    return;
+
+                if (selectedNode.getParent().equals(itemTree.getModel().getRoot()))
+                {
+                    DefaultMutableTreeNode node = (DefaultMutableTreeNode) itemTree.getSelectionPath().getLastPathComponent();
+
+                    IItem item = listings.get(selectedNode.getParent().getIndex(node));
+
+                    if (!item.isBundle())
+                    {
+                        EditItemScreen screen = new EditItemScreen(SellerDashboard.this, (Item) item);
+                    }
+                }
+
+                if (selectedNode.isLeaf())
+                {
+                    DefaultMutableTreeNode bundleNode = (DefaultMutableTreeNode) selectedNode.getParent();
+
+
+
+                    Bundle bundle = (Bundle) listings.get(selectedNode.getParent().getParent().getIndex(bundleNode));
+
+                    //System.out.println(bundleNode.toString());
+                    //System.out.println(bundle);
+                    //System.out.println(selectedNode.getParent().getIndex((DefaultMutableTreeNode) itemTree.getSelectionPath().getLastPathComponent()));
+
+                    Item subItem = bundle.getItemList().get(selectedNode.getParent().getIndex((DefaultMutableTreeNode) itemTree.getSelectionPath().getLastPathComponent()));
+
+                    EditItemScreen screen = new EditItemScreen(SellerDashboard.this, subItem);
+                }
+
+
+
+
+            }
+        });
+
+        addNewItemListingButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (isEditing)
+                    return;
+
+                AddItemScreen screen = new AddItemScreen(currentVendor,SellerDashboard.this);
+            }
+        });
+
+        instance.informView(SellerDashboard.this); //same thing as setVisible(true); // must be last line
+
+
+
+    }
+
+
+
+    public DefaultTreeModel setupTreeContents() {
+        DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("My Listed Items:");
+        NozamaSystem instance = NozamaSystem.getInstance();
+
+
+        for (IItem listing : instance.getInventory())
+        {
+            if (listing.getVendor().equals(currentVendor))
+            {
+                if (listing.isBundle())
+                {
+                    Bundle bundle = (Bundle) listing;
+                    DefaultMutableTreeNode temp = new DefaultMutableTreeNode(bundle.getName() + " (" + listing.getQuantity() + ")");
+                    rootNode.add(temp);
+
+                    for (Item bundleItem : bundle.getItemList())
+                    {
+                        DefaultMutableTreeNode node = new DefaultMutableTreeNode(bundleItem.getName());
+                        temp.add(node);
+                    }
+
+
+                }
+                else
+                {
+                    Item i = (Item) listing;
+                    DefaultMutableTreeNode temp = new DefaultMutableTreeNode(i.getName() + " (" + listing.getQuantity() + ")");
+                    rootNode.add(temp);
+                }
+                listings.add(listing);
+            }
+
+
+        }
+        return new DefaultTreeModel(rootNode);
+
+    }
+
+    public void setIsEditing(Boolean mode){
+        this.isEditing = mode;
+    }
+
+
+    private SellerAccount currentVendor;
+    private ArrayList<IItem> listings = new ArrayList<>();
+
+    private boolean isEditing = false;
 }

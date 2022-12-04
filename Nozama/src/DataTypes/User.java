@@ -25,7 +25,7 @@ public class User
         }
         else if (accountType.equals("seller"))
         {
-            account = new SellerAccount(this);
+            account = new SellerAccount(this.username, 0, 0, 0);
         }
     }
 

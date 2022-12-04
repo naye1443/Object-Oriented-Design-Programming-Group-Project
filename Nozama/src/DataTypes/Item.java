@@ -1,26 +1,32 @@
 package DataTypes;
 
+import Model.NozamaSystem;
+
 import java.util.Objects;
 
 public class Item implements IItem
 {
-    private String ID, name, price, description, quantity;
+    private String ID, name, invoicePrice, sellPrice, description, quantity, vendor;
 
-    public Item(String id, String name, String price, String description, String quantity)
+    public Item(String id, String name, String invoicePrice, String sellPrice, String description, String quantity, String vendor)
     {
         this.ID = id;
         this.name = name;
-        this.price = price;
+        this.invoicePrice = invoicePrice;
+        this.sellPrice = sellPrice;
         this.description = description;
         this.quantity = quantity;
+        this.vendor = vendor;
     }
 
     @Override
     public String toString() {
         return "Item: " + name + " \n" +
-                "Price: $" + price + " \n" +
+                //"Invoice Price: $" + invoicePrice + " \n" +
+                "Price: $" + sellPrice + " \n" +
                 "Description: " + description + " \n" +
-                "Quantity: " + quantity + " \n";
+                "Quantity: " + quantity + " \n" +
+                "Vendor: " + vendor + " \n";
     }
 
     /**
@@ -40,8 +46,8 @@ public class Item implements IItem
     /**
      * @return returns price of item
      */
-    public String getPrice(){
-        return this.price;
+    public String getSellPrice(){
+        return this.sellPrice;
     }
 
     @Override
@@ -54,21 +60,34 @@ public class Item implements IItem
      */
     public int getQuantity() { return Integer.parseInt(this.quantity); }
 
-    @Override
-    public Bundle bundleItem(IItem ... items)
+    public SellerAccount getVendor()
     {
-        return new Bundle(items);
+        return NozamaSystem.getInstance().getSeller(vendor);
+    }
+
+//    @Override
+//    public Bundle bundleItem(IItem ... items)
+//    {
+//        return new Bundle(items);
+//    }
+
+    public String getInvoicePrice() {
+        return invoicePrice;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Item item)) return false;
-        return Objects.equals(ID, item.ID) && Objects.equals(name, item.name) && Objects.equals(price, item.price) && Objects.equals(description, item.description) && Objects.equals(quantity, item.quantity);
+        return Objects.equals(ID, item.ID) && Objects.equals(name, item.name) && Objects.equals(sellPrice, item.sellPrice) && Objects.equals(description, item.description) && Objects.equals(quantity, item.quantity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, name, price, description, quantity);
+        return Objects.hash(ID, name, sellPrice, description, quantity);
     }
 }

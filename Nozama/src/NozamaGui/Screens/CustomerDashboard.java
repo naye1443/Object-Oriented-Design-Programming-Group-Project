@@ -1,5 +1,6 @@
 package NozamaGui.Screens;
 
+import DataTypes.IItem;
 import DataTypes.Item;
 import Model.NozamaSystem;
 
@@ -22,7 +23,7 @@ public class CustomerDashboard extends JDialog
     private JSpinner quantitySpinner;
     private DefaultListModel feedModel;
 
-    private Item currentItem;
+    private IItem currentItem;
 
 
     public CustomerDashboard()
@@ -47,7 +48,6 @@ public class CustomerDashboard extends JDialog
             @Override
             public void valueChanged(ListSelectionEvent e)
             {
-
 
                 if (!e.getValueIsAdjusting())
                 {
@@ -120,7 +120,7 @@ public class CustomerDashboard extends JDialog
         NozamaSystem instance = NozamaSystem.getInstance();
 
         feedModel.removeAllElements();
-        for (Item item : instance.getInventory())
+        for (IItem item : instance.getInventory())
         {
             feedModel.addElement(item.getName());
         }
