@@ -38,6 +38,10 @@ public class NozamaSystem
         return instance;
     }
 
+    /**
+     *
+     * @param profitObj Jsonobject
+     */
     private void parseProfitsObject(JSONObject profitObj)
     {
         String key = profitObj.keySet().toString();
@@ -59,6 +63,9 @@ public class NozamaSystem
 
     }
 
+    /**
+     * Loads Vendor Data From ProfitsObject and stores in JSONArray VendorData
+     */
     private void loadVendorsFromJson()
     {
         vendors.clear();
@@ -67,6 +74,10 @@ public class NozamaSystem
         vendorData.forEach(vendor -> parseProfitsObject((JSONObject) vendor));
     }
 
+    /**
+     * Parses User JSONObject. appends new user to User ArrayList
+     * @param user JSONObject that Represents user
+     */
     private void parseUserDataObject(JSONObject user)
     {
         String key = user.keySet().toString(); // gets the key in the form: "[000]"
@@ -83,6 +94,9 @@ public class NozamaSystem
 
     }
 
+    /**
+     * loads User JSONObject into UserData
+     */
     private void loadUsersFromJson()
     {
         users.clear();
@@ -91,6 +105,12 @@ public class NozamaSystem
         userData.forEach( user -> parseUserDataObject((JSONObject) user));
     }
 
+    /**
+     *
+     * @param bundleItem JSON bundleItem
+     * @param vendor Vendor in Bundeltem
+     * @return parses "items.json" in bundles "b000, b001, ..." and returns a new Item object with below values.
+     */
     private Item parseBundleItem(JSONObject bundleItem, String vendor)
     {
         String key = bundleItem.keySet().toString();
@@ -109,6 +129,12 @@ public class NozamaSystem
 
     }
 
+    /**
+     * Reads Key, If Key has char b, then Creates a bundle Item from bundles in "items.json" "b000, b001, ..."
+     * and adds them to inventory ArrayList.
+     * If Key is not b, then do the same but with an item.
+     * @param item
+     */
     private void parseInventoryDataObject(JSONObject item)
     {
         String key = item.keySet().toString(); // gets the key in the form: "[000]"
@@ -155,6 +181,10 @@ public class NozamaSystem
 
     }
 
+    /**
+     * loads inventory from "item.json", and decomposes inventory Data into an Item or Bundle using ParseInventory
+     * DataObject
+     */
     private void loadInventoryFromJson()
     {
         inventory.clear();
@@ -163,7 +193,12 @@ public class NozamaSystem
         inventoryData.forEach( item -> parseInventoryDataObject((JSONObject) item));
     }
 
-
+    /**
+     *
+     * @param username
+     * @param password
+     * @return User within Json To get account Type
+     */
     public User logIn(String username, String password)
     {
         loadUsersFromJson();
@@ -202,18 +237,31 @@ public class NozamaSystem
         jsonHandler.writeToJson("Nozama/testdata/profits.json", output);
     }
 
+    /**
+     *
+     * @return Inventory Loaded from Json
+     */
     public ArrayList<IItem> getInventory()
     {
         loadInventoryFromJson();
         return inventory;
     }
 
+    /**
+     *
+     * @return Vendors that from Json
+     */
     public ArrayList<SellerAccount> getVendors()
     {
         loadVendorsFromJson();
         return vendors;
     }
 
+    /**
+     *
+     * @param username
+     * @return vendor
+     */
     public SellerAccount getSeller(String username)
     {
         loadVendorsFromJson();
@@ -226,22 +274,33 @@ public class NozamaSystem
         return null;
     }
 
+    /**
+     * @return Getter that returns cart
+     */
     public Cart getCart()
     {
         return cart;
     }
 
-
+    /**
+     * @param user Mutator sets currentUser to user
+     */
     public void setCurrentUser(User user)
     {
         currentUser = user;
     }
 
+    /**
+     * @return Getter that returns currentUser
+     */
     public User getCurrentUser()
     {
         return currentUser;
     }
 
+    /**
+     * @param screen Shows view which is screen is in foreground
+     */
     public void informView(Window screen)
     {
         view.showScreen(screen);

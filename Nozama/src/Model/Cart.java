@@ -107,6 +107,9 @@ public class Cart implements ICoupon {
     return total;
   }
 
+  /**
+   * @return total if no Coupons are applied, else, return total with Coupons
+   */
   public float getTotalWithCoupons(){
     if (totalWithCoupons == 0){
       totalWithCoupons = total;
@@ -114,12 +117,19 @@ public class Cart implements ICoupon {
     return totalWithCoupons;
   }
 
+  /**
+   * Mutator that sets totalWithCoupons value
+   * @param value
+   */
   public void setTotalWithCoupons(float value)
   {
     totalWithCoupons = value;
   }
 
-
+  /**
+   * @param index
+   * @return quanity of Item in cart
+   */
   public int getQuantity(int index)
   {
     return CartQuantities.get(index);

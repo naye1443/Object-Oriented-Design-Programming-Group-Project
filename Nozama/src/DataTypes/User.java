@@ -3,6 +3,9 @@ package DataTypes;
 
 import ReadWrite.Json.JSONObject;
 
+/**
+ * Defines User in Application
+ */
 public class User
 {
     private String userID, username, password, accountType;
