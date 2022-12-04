@@ -4,13 +4,16 @@ import DataTypes.User;
 import Model.NozamaSystem;
 import NozamaGui.Screens.CustomerDashboard;
 
+/**
+ * @author Jordan Diaz
+ * CustomerAccount instantiates customerDashboard
+ */
 public class CustomerAccount implements IAccount
 {
     User accountUser;
 
     /**
-     * Constructor
-     * @author Jordan Diaz
+     * CustomerAccount Constructor takes in an instant of the User object and defines the accountUser variable.
      */
     public CustomerAccount(User user)
     {
@@ -18,7 +21,9 @@ public class CustomerAccount implements IAccount
     }
 
 
-    // Creates a customer and Seller Homepage instance depending on Account type.
+    /**
+     * Creates a customer and Seller Homepage instance depending on Account type.
+     */
     @Override
     public void OnLogIn()
     {

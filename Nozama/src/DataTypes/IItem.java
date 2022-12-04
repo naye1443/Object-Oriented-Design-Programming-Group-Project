@@ -1,5 +1,9 @@
 package DataTypes;
 
+/**
+ * @author Jordan
+ * IItem interface writes the blueprint methods for Item class to implement.
+ */
 public interface IItem
 {
 //    Bundle bundleItem(IItem ... items);
