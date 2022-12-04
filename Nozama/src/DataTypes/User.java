@@ -1,10 +1,9 @@
 package DataTypes;
-
-
 import ReadWrite.Json.JSONObject;
 
 /**
- * Defines User in Application
+ * User class defines which type of account/user the user is based on the users input.
+ * @author Jordan
  */
 public class User
 {
@@ -12,9 +11,12 @@ public class User
     private IAccount account;
 
     /**
-     * Constructor
-     * @author Jordan Diaz
-     * */
+     * Constructor defines the users properties.
+     * @param ID - id
+     * @param username - name or email
+     * @param password - password
+     * @param accountType - status
+     */
     public User(String ID, String username, String password, String accountType)
     {
         this.userID = ID;
@@ -34,7 +36,6 @@ public class User
 
     /**
      * This Method redefines the variables of a specific DataTypes.User object
-     * @author Jordan Diaz
      * */
     public void reconstruct(String ID, String username, String password, String accountType)
     {
@@ -47,7 +48,6 @@ public class User
     /**
      * This Method converts the variables of a specific DataTypes.User object into a JSONObject
      * @return JSONObject representation of DataTypes.User object
-     * @author Jordan Diaz
      * */
     public JSONObject toJSONObject()
     {
@@ -65,7 +65,6 @@ public class User
     /**
      * This Method converts the variables of a specific DataTypes.User object into a String
      * @return String representation of DataTypes.User object
-     * @author Jordan Diaz
      * */
     @Override
     public String toString() {
