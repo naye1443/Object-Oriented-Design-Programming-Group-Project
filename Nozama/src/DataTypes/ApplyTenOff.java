@@ -1,18 +1,26 @@
 package DataTypes;
 
 /**
- * @author: Jamar
+ * @author Jamar
  * Applies 10% off total cart cost.
  */
 public class ApplyTenOff extends CouponDecorator{
 
     ICoupon cart;
 
+    /**
+     * Grabs instance of the cart object
+     * @param: cart
+     */
     public ApplyTenOff(ICoupon cart)
     {
         this.cart = cart;
     }
 
+    /**
+     * Does 10% coupon calculation
+     * @return Total = Carts total - (carts total * 0.10)
+     */
     @Override
     public float getTotal() {
         return (float) (cart.getTotal() - cart.getTotal() * 0.1);
