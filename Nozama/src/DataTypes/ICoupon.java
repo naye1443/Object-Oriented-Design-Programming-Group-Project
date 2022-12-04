@@ -5,7 +5,10 @@ package DataTypes;
  * AddCoupon is an interface for Cart and CouponDecorator class.
  */
 public interface ICoupon {
-    String getDescription();
-    float AddFivePercentCoupon();
-    float AddTenPercentCoupon();
+
+     float getTotal();
+
+//    String getDescription();
+//    float AddFivePercentCoupon();
+//    float AddTenPercentCoupon();
 }
