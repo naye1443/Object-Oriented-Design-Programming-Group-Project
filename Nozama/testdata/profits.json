@@ -1,0 +1,16 @@
+[
+  {
+    "seller1": {
+      "profit": "0.00",
+      "revenues": "0.00",
+      "costs" : "0.00"
+    }
+  },
+  {
+    "seller2": {
+      "profit": "0.00",
+      "revenues": "0.00",
+      "costs" : "0.00"
+    }
+  }
+]

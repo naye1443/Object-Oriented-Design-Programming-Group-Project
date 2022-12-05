@@ -96,21 +96,40 @@ public class Cart implements ICoupon {
    * Adds each item/bundle in cart.
    * @return - Grand total for each item/bundle in cart.
    */
-  public float calculateTotalFromCart(){
+  public float getTotal(){
     total = 0;
     int index = 0;
     for(IItem item : CartContainer){
-      total += Float.parseFloat(item.getPrice()) * CartQuantities.get(index);
+      total += Float.parseFloat(item.getSellPrice()) * CartQuantities.get(index);
       index += 1;
     }
 
     return total;
   }
 
-  public float getTotal(){
-    return total;
+  /**
+   * @return total if no Coupons are applied, else, return total with Coupons
+   */
+  public float getTotalWithCoupons(){
+    if (totalWithCoupons == 0){
+      totalWithCoupons = total;
+    }
+    return totalWithCoupons;
   }
 
+  /**
+   * Mutator that sets totalWithCoupons value
+   * @param value
+   */
+  public void setTotalWithCoupons(float value)
+  {
+    totalWithCoupons = value;
+  }
+
+  /**
+   * @param index
+   * @return quanity of Item in cart
+   */
   public int getQuantity(int index)
   {
     return CartQuantities.get(index);
@@ -131,19 +150,24 @@ public class Cart implements ICoupon {
   public String getDescription() {
     return "Basic cart no coupons added yet";
   }
+//
+//  public void AddFivePercentCoupon() {
+//    coupon = new ApplyFiveOff(this);
+//  }
 
-  public float AddFivePercentCoupon() {
-    return total;
-  }
-
-  public float AddTenPercentCoupon() {
-    return total;
-  }
+//
+//  public float AddTenPercentCoupon() {
+//    return total;
+//  }
 
   protected ArrayList<IItem> CartContainer;
   protected ArrayList<Integer> CartQuantities;
-  public float total;
+  private float total;
 
+  private float totalWithCoupons;
   public String cartMessage;
+
+  public ICoupon coupon;
+
 
 }

@@ -1,0 +1,19 @@
+{
+  "b000": {
+    "bundleName": "Fruit Bundle",
+    "items": [
+      "000",
+      "001",
+      "003"
+    ]
+  },
+  "b001": {
+    "bundleName": "Fruit Bundle 2",
+    "items": [
+      "000",
+      "001",
+      "003",
+      "005"
+    ]
+  }
+}
