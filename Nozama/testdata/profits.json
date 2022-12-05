@@ -1,16 +1,16 @@
 [
-  {
-    "seller1": {
-      "profit": "0.00",
-      "revenues": "0.00",
-      "costs" : "0.00"
-    }
-  },
-  {
-    "seller2": {
-      "profit": "0.00",
-      "revenues": "0.00",
-      "costs" : "0.00"
-    }
-  }
+	{
+		"seller1":{
+			"profit":"69.0",
+			"revenues":"175.0",
+			"costs":"106.0"
+			}
+		},
+	{
+		"seller2":{
+			"profit":"0.0",
+			"revenues":"0.0",
+			"costs":"0.0"
+			}
+		}
 ]

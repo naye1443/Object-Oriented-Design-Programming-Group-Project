@@ -1,5 +1,6 @@
 package NozamaGui.Screens;
 
+import DataTypes.Bundle;
 import DataTypes.Item;
 import DataTypes.SellerAccount;
 import Model.NozamaSystem;
@@ -9,23 +10,23 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 /**
  * Represents Screen that uses a form to be generated in JSwing. Extends JDialog
  */
-public class AddItemScreen extends JDialog
-{
-    private JPanel mainPanel;
+public class AddBundleScreen extends JDialog{
     private JTextField nameTextField;
-    private JTextField invoicePriceTextField;
-    private JTextField sellPriceTextField;
-    private JTextField descriptionTextField;
     private JSpinner quantitySpinner;
     private JTextField vendorTextField;
     private JButton addItemButton;
     private JLabel infoText;
+    private JSpinner numberOfItemsSpinner;
+    private JPanel mainPanel;
+    private JButton submitBundleButton;
 
-    public AddItemScreen(SellerAccount account, SellerDashboard accountDashboard, Boolean doBundle, AddBundleScreen bundleScreen)
+
+    public AddBundleScreen(SellerAccount account, SellerDashboard accountDashboard)
     {
         setTitle("Add Item");
         setContentPane(mainPanel);
@@ -70,39 +71,37 @@ public class AddItemScreen extends JDialog
             {
 
                 Integer temp = Integer.parseInt(instance.getLastID()) + 1;
-                Item item = new Item(String.format("%03d", temp),
-                        nameTextField.getText(),
-                        invoicePriceTextField.getText(),
-                        sellPriceTextField.getText(),
-                        descriptionTextField.getText(),
-                        quantitySpinner.getValue().toString(),
-                        vendorTextField.getText());
 
-                if (doBundle)
-                {
-                    bundleScreen.itemsForBundle.add(item);
-                    dispose();
-                }
-                else
-                {
-                    instance.getInventory().add(item);
-                    instance.updateInventoryJson();
-                    SellerDashboard screen = new SellerDashboard(account);
-                    dispose();
-                    accountDashboard.dispose();
-                }
+                numberOfItems = (int) numberOfItemsSpinner.getValue();
 
-
+                AddItemScreen screen = new AddItemScreen(account, accountDashboard, true,AddBundleScreen.this);
 
             }
         });
 
-        instance.informView(AddItemScreen.this); //same thing as setVisible(true); // must be last line
+        submitBundleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+                Bundle bundle = new Bundle("b000", nameTextField.getText(), vendorTextField.getText(), quantitySpinner.getValue().toString());
 
+                for (Item item : itemsForBundle)
+                {
+                    bundle.addItem(item);
+                }
+
+                instance.getInventory().add(bundle);
+                instance.updateInventoryJson();
+                SellerDashboard screen = new SellerDashboard(account);
+                dispose();
+                accountDashboard.dispose();
+            }
+        });
+
+        instance.informView(AddBundleScreen.this); //same thing as setVisible(true); // must be last line
 
     }
 
-
-
+    public int numberOfItems;
+    public ArrayList<Item> itemsForBundle = new ArrayList<>();
 }

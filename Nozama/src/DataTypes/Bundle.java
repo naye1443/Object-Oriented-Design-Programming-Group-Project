@@ -1,87 +1,89 @@
 package DataTypes;
 import Model.NozamaSystem;
+import ReadWrite.Json.JSONArray;
+import ReadWrite.Json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * author: Jamar
- * Bundle Class will take an item and bundle that item together with another item or group of (IItem) items.
+ * Represents a container for multiple instances of class Item. Implements IItem interface
+ * @author Jamar
  */
 public class Bundle implements IItem{
+
     /**
-     * Parameterized constructor takes in a group of (Item or IItem) item(s), quantity, bundleName, and vendorUsername.
-     * Instantiates itemList array of bundled items.
+     * Constructor: Constructs Bundle with variable number of instances from class Item
+     * @precondition items != null
+     * @param bundleID ID
+     * @param bundleName Name
+     * @param vendorUsername Vendor Username
+     * @param quantity Quantity of Bundle in inventory
+     * @param items Collection of instances of class Item
      */
-    public Bundle(String bundleName, String vendorUsername, String quantity,Item ... items)
+    public Bundle(String bundleID, String bundleName, String vendorUsername, String quantity,Item ... items)
     {
+        this.bundleID = bundleID;
         this.bundleName = bundleName;
         this.vendorUsername = vendorUsername;
         this.quantity = quantity;
 
         for (Item item : items)
-        {
             itemList.add(item);
-        }
+
     }
 
     /**
-     * Parameterized constructor takes in a bundle's quantity, bundleName, and vendorUsername.
-     * Instantiate itemList array of items.
+     * Constructor: Constructs Bundle with no instances of class Item on construction
+     * @param bundleID ID
+     * @param bundleName Name
+     * @param vendorUsername Vendor Username
+     * @param quantity Quantity of Bundle in inventory
      */
-    public Bundle(String bundleName, String vendorUsername, String quantity)
+    public Bundle(String bundleID, String bundleName, String vendorUsername, String quantity)
     {
+        this.bundleID = bundleID;
         this.bundleName = bundleName;
         this.vendorUsername = vendorUsername;
         this.quantity = quantity;
     }
 
-//    @Override
-//    public Bundle bundleItem(IItem ... items)
-//    {
-//        return new Bundle(this.bundleName, this.vendorUsername, items);
-//    }
-
     /**
-     * Overrides toString method with custom getter methods, to create a customized string.
-     * @return a string that consist all it's item(s) properties
+     * @return String representation of Bundle class instance
      */
     @Override
     public String toString()
     {
         String output = "Bundle: " + bundleName + "\n" +
-                "Vendor: " + vendorUsername + "\n" +
-                "Bundled Price: $" + getSellPrice() + "\n";
+                        "Vendor: " + vendorUsername + "\n" +
+                        "Bundled Price: $" + String.format("%.2f", Float.parseFloat(getSellPrice())) + "\n" +
+                        "Quantity of Bundled Item: " + quantity + "\n\n";
 
         for (Item item : itemList)
         {
-            output += "Item: " + item.getName() + "\n" +
-                    "Price: $" + item.getSellPrice() + " \n" +
-                    "Description: " + item.getDescription() + " \n" +
-                    "Quantity: " + item.getQuantity() + " \n";
-            output += "\n";
+            output +=   "Item: " + item.getName() + "\n" +
+                        "Price: $" + item.getSellPrice() + " \n" +
+                        "Description: " + item.getDescription() + " \n" +
+                        "Quantity: " + item.getQuantity() + " \n\n";
         }
         return output;
     }
 
     /**
-     * Getter method that does a summation of all items in itemList prices together in the bundle object.
-     * @return integer(string sum)
+     * Calculates sell price of Bundle instance
+     * @return String representation of sell price of Bundle instance
      */
     public String getSellPrice()
     {
         float sum = 0;
         for (Item item : itemList)
-        {
             sum += Float.parseFloat(item.getSellPrice()) * item.getQuantity();
-            item.getSellPrice();
-        }
+
         return Float.toString(sum);
     }
 
     /**
-     * Confirms that a bundle object is of type bundle
-     * @return Boolean
+     * @return True, this class is a bundle
      */
     @Override
     public boolean isBundle() {
@@ -89,8 +91,7 @@ public class Bundle implements IItem{
     }
 
     /**
-     * Gets bundle's quantity amount
-     * @return integer amount of the item's quantity
+     * @return Integer representation of the quantity of Bundle in inventory
      */
     @Override
     public int getQuantity() {
@@ -98,26 +99,58 @@ public class Bundle implements IItem{
     }
 
     /**
-     * Gets bundle's vendor description
-     * @return string of the item's vendor name
+     * @return String representation of bundle description
      */
     @Override
     public SellerAccount getVendor() {
-
         return NozamaSystem.getInstance().getSeller(vendorUsername);
     }
 
     /**
-     * Gets bundle's name description
-     * @return string of item's name
+     * @return String representation of bundle's name
      */
     @Override
     public String getName() {
         return bundleName;
     }
 
+
     /**
-     * Appends an item to itemList
+     * @return JSONObject representation of bundle
+     */
+    @Override
+    public JSONObject toJSONObject() {
+        JSONObject data = new JSONObject();
+        data.put("bundleName", this.bundleName);
+        data.put("vendor", this.vendorUsername);
+        data.put("quantity", this.quantity);
+
+        JSONArray itemArray = new JSONArray();
+        for (Item item : itemList)
+        {
+            JSONObject temp = new JSONObject();
+            temp.put("name", item.getName());
+            temp.put("invoice_price", item.getInvoicePrice());
+            temp.put("sell_price", item.getSellPrice());
+            temp.put("description", item.getDescription());
+            temp.put("quantity", String.valueOf(item.getQuantity()));
+
+            JSONObject tempHeader = new JSONObject();
+            tempHeader.put(item.getID(), temp);
+
+            itemArray.add(tempHeader);
+        }
+
+        data.put("items", itemArray);
+
+        JSONObject header = new JSONObject();
+        header.put(this.bundleID, data);
+
+        return header;
+    }
+
+    /**
+     * Appends an instance of class Item to bundle
      */
     public void addItem(Item item)
     {
@@ -125,8 +158,7 @@ public class Bundle implements IItem{
     }
 
     /**
-     * Gets itemList Item array
-     * @return class member itemList
+     * @return ArrayList<Item> which represents the items this bundle
      */
     public ArrayList<Item> getItemList() {return itemList;}
 
@@ -139,7 +171,7 @@ public class Bundle implements IItem{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Bundle bundle)) return false;
-        return Objects.equals(itemList, bundle.itemList) && Objects.equals(bundleCost, bundle.bundleCost) && Objects.equals(vendorUsername, bundle.vendorUsername) && Objects.equals(quantity, bundle.quantity) && Objects.equals(bundleName, bundle.bundleName);
+        return Objects.equals(itemList, bundle.itemList) && Objects.equals(vendorUsername, bundle.vendorUsername) && Objects.equals(quantity, bundle.quantity) && Objects.equals(bundleName, bundle.bundleName);
     }
 
     /**
@@ -148,12 +180,29 @@ public class Bundle implements IItem{
      */
     @Override
     public int hashCode() {
-        return Objects.hash(itemList, bundleCost, vendorUsername, quantity, bundleName);
+        return Objects.hash(itemList, vendorUsername, quantity, bundleName);
+    }
+
+    /**
+     * @return bundle ID
+     */
+    public String getID()
+    {
+        return itemList.get(itemList.size() - 1).getID();
+    }
+
+    /**
+     * changes the value of quantity
+     * @param value String representation of value
+     */
+    public void setQuantity(String value)
+    {
+        this.quantity = value;
     }
 
     private ArrayList<Item> itemList = new ArrayList<>();
-    private String bundleCost;
     private String vendorUsername;
     private String quantity;
     private String bundleName;
+    private String bundleID;
 }
