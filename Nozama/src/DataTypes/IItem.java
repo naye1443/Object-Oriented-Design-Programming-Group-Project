@@ -1,17 +1,18 @@
 package DataTypes;
 
+import ReadWrite.Json.JSONObject;
+
+/**
+ * Contract that requires the following methods for any classes inheriting
+ * @author Jordan
+ */
 public interface IItem
 {
-//    Bundle bundleItem(IItem ... items);
-
-    String getSellPrice();
-
-    boolean isBundle();
-
-    int getQuantity();
-
-    SellerAccount getVendor();
-
+    String getID();
     String getName();
-
+    String getSellPrice();
+    int getQuantity();
+    SellerAccount getVendor();
+    boolean isBundle();
+    JSONObject toJSONObject();
 }

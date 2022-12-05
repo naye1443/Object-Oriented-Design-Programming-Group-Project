@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Represents Screen that uses a form to be generated in JSwing. Extends JDialog
+ */
 public class CheckoutScreen extends JDialog {
     private JPanel panel1;
     private JTextField textField1;
@@ -35,8 +38,6 @@ public class CheckoutScreen extends JDialog {
 
         totalPriceLabel.setText("Total: $" + String.format("%.02f", instance.getCart().getTotalWithCoupons()));
 
-        NozamaSystem.getInstance().informView(CheckoutScreen.this); //same thing as setVisible(true); // must be last line
-
 
         cancelButton.addActionListener(new ActionListener() {
             @Override
@@ -45,5 +46,24 @@ public class CheckoutScreen extends JDialog {
                 CheckoutScreen.this.dispose();
             }
         });
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                NozamaSystem.getInstance().checkout();
+
+                instance.updateInventoryJson();
+                instance.updateProfitsJSON();
+                JOptionPane.showMessageDialog(CheckoutScreen.this,
+                        "Thank You for Shopping at NOZAMA!",
+                        "Transaction Complete", JOptionPane.INFORMATION_MESSAGE);
+
+                dispose();
+                LoginScreen screen = new LoginScreen(null);
+            }
+        });
+
+        NozamaSystem.getInstance().informView(CheckoutScreen.this); //same thing as setVisible(true); // must be last line
+
     }
 }

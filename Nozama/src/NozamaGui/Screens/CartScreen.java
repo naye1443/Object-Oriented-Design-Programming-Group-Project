@@ -15,6 +15,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Represents Screen that uses a form to be generated in JSwing. Extends JFrame
+ */
 public class CartScreen extends JFrame
 {
 

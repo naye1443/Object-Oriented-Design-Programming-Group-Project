@@ -1,36 +1,31 @@
 package DataTypes;
 
-import DataTypes.User;
-import Model.NozamaSystem;
 import NozamaGui.Screens.CustomerDashboard;
 
+/**
+ * Represents a customer owned account. Implements IAccount
+ * @author Jordan Diaz
+ */
 public class CustomerAccount implements IAccount
 {
     User accountUser;
 
     /**
      * Constructor
-     * @author Jordan Diaz
+     * @param user account user
      */
     public CustomerAccount(User user)
     {
         this.accountUser = user;
     }
 
-
-    // Creates a customer and Seller Homepage instance depending on Account type.
+    /**
+     * Changes pages to Customer Dashboard
+     */
     @Override
     public void OnLogIn()
     {
         System.out.println("A customer has logged in");
         CustomerDashboard customerDashboard = new CustomerDashboard();
     }
-
-    // add to cart
-
-    // get inventory
-
-
-
-
 }

@@ -1,17 +1,23 @@
 package DataTypes;
-
-
+import Model.NozamaSystem;
 import ReadWrite.Json.JSONObject;
 
+/**
+ * User class defines which type of account/user the user is based on the users input.
+ * @author Jordan
+ */
 public class User
 {
     private String userID, username, password, accountType;
     private IAccount account;
 
     /**
-     * Constructor
-     * @author Jordan Diaz
-     * */
+     * Constructor defines the users properties.
+     * @param ID - id
+     * @param username - name or email
+     * @param password - password
+     * @param accountType - status
+     */
     public User(String ID, String username, String password, String accountType)
     {
         this.userID = ID;
@@ -20,32 +26,14 @@ public class User
         this.accountType = accountType;
 
         if (accountType.equals("customer"))
-        {
             account = new CustomerAccount(this);
-        }
         else if (accountType.equals("seller"))
-        {
-            account = new SellerAccount(this.username, 0, 0, 0);
-        }
+            account = NozamaSystem.getInstance().getSeller(this.username);
     }
 
     /**
-     * This Method redefines the variables of a specific DataTypes.User object
-     * @author Jordan Diaz
-     * */
-    public void reconstruct(String ID, String username, String password, String accountType)
-    {
-        this.userID = ID;
-        this.username = username;
-        this.password = password;
-        this.accountType = accountType;
-    }
-
-    /**
-     * This Method converts the variables of a specific DataTypes.User object into a JSONObject
-     * @return JSONObject representation of DataTypes.User object
-     * @author Jordan Diaz
-     * */
+     * @return JSONObject representation of User
+     */
     public JSONObject toJSONObject()
     {
         JSONObject data = new JSONObject();
@@ -60,9 +48,7 @@ public class User
     }
 
     /**
-     * This Method converts the variables of a specific DataTypes.User object into a String
-     * @return String representation of DataTypes.User object
-     * @author Jordan Diaz
+     * @return String representation of User
      * */
     @Override
     public String toString() {
@@ -70,26 +56,26 @@ public class User
                 "userID='" + userID + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", accountType='" + accountType + '\'' +
-                '}';
+                ", accountType='" + accountType + '\'' + '}';
     }
 
-    public String getUserID() {
-        return userID;
-    }
-
-    public String getAccountType() {
-        return accountType;
-    }
-
+    /**
+     * @return String representation of User's username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * @return String representation of User's password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * @return String representation of User's account
+     */
     public IAccount getAccount()
     {
         return account;

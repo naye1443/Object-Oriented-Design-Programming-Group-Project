@@ -1,14 +1,10 @@
 package DataTypes;
 
 /**
- * @author: Jamar
- * AddCoupon is an interface for Cart and CouponDecorator class.
+ * Contract that represents coupons, must implement getTotal()
+ * @author Jamar
  */
 public interface ICoupon {
-
      float getTotal();
 
-//    String getDescription();
-//    float AddFivePercentCoupon();
-//    float AddTenPercentCoupon();
 }

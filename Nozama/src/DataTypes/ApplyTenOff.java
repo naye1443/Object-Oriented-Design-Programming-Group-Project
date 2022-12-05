@@ -1,29 +1,29 @@
 package DataTypes;
 
 /**
- * @author: Jamar
- * Applies 10% off total cart cost.
+ * Applies 10% off total cart cost. Extends CouponDecorator
+ * @author Jamar
  */
 public class ApplyTenOff extends CouponDecorator{
 
     ICoupon cart;
 
+    /**
+     * Constructor: Defines instance of ICoupon
+     * @param cart ICoupon Instance
+     */
     public ApplyTenOff(ICoupon cart)
     {
         this.cart = cart;
     }
 
+    /**
+     * Calculates 10% coupon of current total
+     * @return float representation of the new total
+     */
     @Override
     public float getTotal() {
         return (float) (cart.getTotal() - cart.getTotal() * 0.1);
     }
 
-
-//    public ApplyTenOff(ICoupon newCart) {
-//        super(newCart);
-//        System.out.println("Applying %10 off");
-//    }
-//    public float AddTenPercentCoupon() {
-//        return (float) (this.cart.AddTenPercentCoupon() - (this.cart.AddTenPercentCoupon() * 0.10));
-//    }
 }

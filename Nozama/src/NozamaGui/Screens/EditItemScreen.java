@@ -10,6 +10,9 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Represents Screen that uses a form to be generated in JSwing. Extends JDialog
+ */
 public class EditItemScreen extends JDialog
 {
     private JPanel mainPanel;
@@ -70,8 +73,19 @@ public class EditItemScreen extends JDialog
 
         saveChangesButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
+                itemToChange.setID(itemToChange.getID());
+                itemToChange.setName(nameTextField.getText());
+                itemToChange.setInvoicePrice(invoicePriceTextField.getText());
+                itemToChange.setSellPrice(sellPriceTextField.getText());
+                itemToChange.setDescription(descriptionTextField.getText());
+                itemToChange.setQuantity(quantitySpinner.getValue().toString());
+                itemToChange.setVendor(vendorTextField.getText());
 
+                instance.updateInventoryJson();
+                accountDashboard.setIsEditing(false);
+                dispose();
             }
         });
 
