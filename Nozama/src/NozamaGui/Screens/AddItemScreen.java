@@ -103,6 +103,4 @@ public class AddItemScreen extends JDialog
 
     }
 
-
-
 }
