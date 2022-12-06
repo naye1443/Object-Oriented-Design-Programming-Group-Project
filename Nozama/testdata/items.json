@@ -5,37 +5,7 @@
 			"invoice_price":"10.00",
 			"sell_price":"15.00",
 			"description":"It's a T-shirt bro... calm down",
-			"quantity":"10",
-			"vendor":"seller1"
-			}
-		},
-	{
-		"001":{
-			"name":"Poster",
-			"invoice_price":"10.00",
-			"sell_price":"30.00",
-			"description":"It's a Poster bro...",
-			"quantity":"10",
-			"vendor":"seller1"
-			}
-		},
-	{
-		"005":{
-			"name":"Bottle",
-			"invoice_price":"5.00",
-			"sell_price":"15.00",
-			"description":"It's a Bottle bro...",
-			"quantity":"8",
-			"vendor":"seller1"
-			}
-		},
-	{
-		"006":{
-			"name":"item",
-			"invoice_price":"5",
-			"sell_price":"10",
-			"description":"asdfsdf",
-			"quantity":"1",
+			"quantity":"7",
 			"vendor":"seller1"
 			}
 		},
@@ -43,7 +13,7 @@
 		"b000":{
 			"bundleName":"Bundle Name",
 			"vendor":"seller1",
-			"quantity":"5",
+			"quantity":"2",
 			"items":[
 				{
 					"007":{
@@ -70,6 +40,24 @@
 						"sell_price":"10",
 						"description":"",
 						"quantity":"1"
+						}
+					}
+]
+			}
+		},
+	{
+		"b000":{
+			"bundleName":"Bundle Name",
+			"vendor":"seller1",
+			"quantity":"3",
+			"items":[
+				{
+					"008":{
+						"name":"new Item",
+						"invoice_price":"10.00",
+						"sell_price":"55.00",
+						"description":"A cool description",
+						"quantity":"3"
 						}
 					}
 ]

@@ -1,6 +1,7 @@
 package DataTypes;
 
 import NozamaGui.Screens.CustomerDashboard;
+import Model.Cart;
 
 /**
  * Represents a customer owned account. Implements IAccount
@@ -9,6 +10,7 @@ import NozamaGui.Screens.CustomerDashboard;
 public class CustomerAccount implements IAccount
 {
     User accountUser;
+    private Cart currCart;
 
     /**
      * Constructor
@@ -17,6 +19,7 @@ public class CustomerAccount implements IAccount
     public CustomerAccount(User user)
     {
         this.accountUser = user;
+        this.currCart = new Cart();
     }
 
     /**
