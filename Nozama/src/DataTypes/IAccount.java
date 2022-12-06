@@ -1,8 +1,8 @@
 package DataTypes;
 
 /**
- * @author Eyan
  * Account Interface holds the blueprint method for users to login.
+ * @author Eyan
  */
 public interface IAccount
 {

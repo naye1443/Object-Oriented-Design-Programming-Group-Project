@@ -1,20 +1,18 @@
 package DataTypes;
 
-import Model.NozamaSystem;
-import NozamaGui.Screens.CustomerDashboard;
 import NozamaGui.Screens.SellerDashboard;
 import ReadWrite.Json.JSONObject;
 
 import java.util.Objects;
 
 /**
- * SellerAccount class describes the behavior of the seller
+ * Represents a Seller owned account. Implements IAccount
  * @author Jordan Diaz
  */
 public class SellerAccount implements IAccount{
 
     /**
-     * Constructor defines the sellers account properties
+     * Constructor: defines the sellers account properties
      * @param username - name
      * @param profit - earnings
      * @param revenues - summations of all sold items
@@ -22,7 +20,6 @@ public class SellerAccount implements IAccount{
      */
     public SellerAccount(String username, float profit, float revenues, float costs)
     {
-
         this.userName = username;
         this.profit = profit;
         this.revenues = revenues;
@@ -30,7 +27,7 @@ public class SellerAccount implements IAccount{
     }
 
     /**
-     * Creates seller dashboard instant
+     * Changes pages to Seller Dashboard
      */
     @Override
     public void OnLogIn()
@@ -40,15 +37,14 @@ public class SellerAccount implements IAccount{
     }
 
     /**
-     * Converts sellers profit, revenues, and costs variables to a JSON object.
-     * @return JSONObject
+     * @return JSONObject representation of SellerAccount
      */
     public JSONObject toJSONObject()
     {
         JSONObject data = new JSONObject();
-        data.put("profit", this.profit);
-        data.put("revenues", this.revenues);
-        data.put("costs", this.costs);
+        data.put("profit", String.valueOf(this.profit));
+        data.put("revenues", String.valueOf(this.revenues));
+        data.put("costs", String.valueOf(this.costs));
 
         JSONObject header = new JSONObject();
         header.put(this.userName, data);
@@ -57,16 +53,14 @@ public class SellerAccount implements IAccount{
     }
 
     /**
-     * Gets seller's userName property
-     * @return string
+     * @return String representation of Item's username
      */
     public String getUserName(){
         return userName;
     }
 
     /**
-     * Overrides default toString method, to create custom toString output string.
-     * @return string
+     * @return String representation of instance of SellerAccount
      */
     @Override
     public String toString() {
@@ -74,25 +68,25 @@ public class SellerAccount implements IAccount{
                 "userName='" + userName + '\'' +
                 ", profit=" + profit +
                 ", revenues=" + revenues +
-                ", costs=" + costs +
-                '}';
+                ", costs=" + costs + '}';
     }
 
+    /**
+     * @return float representation of SellerAccount's profit
+     */
     public float getProfit() {
         return profit;
     }
 
     /**
-     * Gets seller's revenues property
-     * @return float
+     * @return float representation of SellerAccount's Revenues
      */
     public float getRevenues() {
         return revenues;
     }
 
     /**
-     * Gets seller's cost property
-     * @return float
+     * @return float representation fo SellerAccount's Costs
      */
     public float getCosts() {
         return costs;
@@ -117,6 +111,32 @@ public class SellerAccount implements IAccount{
     @Override
     public int hashCode() {
         return Objects.hash(userName, profit, revenues, costs);
+    }
+
+    /**
+     * Adds "addThis" to SellerAccount's Revenues
+     * @param addThis
+     */
+    public void addToRevenues(float addThis)
+    {
+        this.revenues += addThis;
+    }
+
+    /**
+     * Adds "addThis" to SellerAccount's Costs
+     * @param addThis
+     */
+    public void addToCosts(float addThis)
+    {
+        this.costs += addThis;
+    }
+
+    /**
+     * Calculates the profit of a SellerAccount
+     */
+    public void calculateProfit()
+    {
+        this.profit = this.revenues - this.costs;
     }
 
     private String userName;

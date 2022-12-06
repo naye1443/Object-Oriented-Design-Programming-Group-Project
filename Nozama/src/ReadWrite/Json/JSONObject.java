@@ -6,9 +6,10 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class JSONObject extends HashMap implements Map, JSONAware, JSONStreamAware {
+public class JSONObject extends LinkedHashMap implements Map, JSONAware, JSONStreamAware {
     private static final long serialVersionUID = -503443796854799292L;
 
     public JSONObject() {

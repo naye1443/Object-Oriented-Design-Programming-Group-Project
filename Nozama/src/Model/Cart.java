@@ -1,47 +1,45 @@
 package Model;
-import DataTypes.ICoupon;
-import DataTypes.IItem;
-
+import DataTypes.*;
 
 
 import java.util.ArrayList;
-/*
- * This is a class that is part of a DataTypes.CustomerAccount
- *
- * */
-public class Cart implements ICoupon {
+
+/**
+ * Represents container for instances of any class implementing IItem interface. Implements ICoupon
+ * @author Eyan
+ */
+public class Cart implements ICoupon
+{
   /**
    * Constructor
-   * @Author Eyan
    */
   public Cart(){
-    CartContainer = new ArrayList<IItem>();
+    CartContainer = new ArrayList<>();
     CartQuantities = new ArrayList<>();
   }
 
   /**
-   * Returns Container list
+   * @return ArrayList<IItem> that represents the Items
    */
   public ArrayList<IItem> getCart(){
     return CartContainer;
   }
 
   /**
-   * Add a new item to the Arraylist
-   * @param newItem DataTypes.IItem to add to cart
+   * Given an Item and quantity of how many to add, adds quantity of IItems to cart
+   * @param newItem
+   * @param quantity
    */
   public void addItem(IItem newItem, int quantity){
 
     if (CartContainer.contains(newItem))
     {
-
       int index = CartContainer.indexOf(newItem);
-
       int updatedQuantity = quantity + CartQuantities.get(index);
 
       if (updatedQuantity > newItem.getQuantity())
       {
-        cartMessage = "There are no more of this item";
+        cartMessage = "Cannot Add more than given quantity";
       }
       else
       {
@@ -57,12 +55,12 @@ public class Cart implements ICoupon {
       CartQuantities.add(quantity);
     }
 
-
   }
 
   /**
-   * Removes DataTypes.IItem from CartContainer
-   * @param removedItem - item or bundle to be removed.
+   * Given an Item to remove and the quantity to delete, removes a quantity of IItems from the Cart
+   * @param removedItem
+   * @param quantity
    */
   public void removeItem(IItem removedItem, int quantity)
   {
@@ -78,13 +76,14 @@ public class Cart implements ICoupon {
       }
       else if (currentQuantity > quantity)
       {
-        System.out.println("this is being run");
         CartQuantities.set(index, currentQuantity - quantity);
       }
     }
-    //CartContainer.removeIf(item -> item.equals(removedItem));
   }
 
+  /**
+   * Prints Cart to screen
+   */
   public void viewCart(){
     for(IItem item : CartContainer){
       System.out.println(item.toString());
@@ -92,9 +91,8 @@ public class Cart implements ICoupon {
   }
 
   /**
+   * @return Grand total for each IItem in cart.
    * @Author: Jamar
-   * Adds each item/bundle in cart.
-   * @return - Grand total for each item/bundle in cart.
    */
   public float getTotal(){
     total = 0;
@@ -103,12 +101,11 @@ public class Cart implements ICoupon {
       total += Float.parseFloat(item.getSellPrice()) * CartQuantities.get(index);
       index += 1;
     }
-
     return total;
   }
 
   /**
-   * @return total if no Coupons are applied, else, return total with Coupons
+   * @return float representing new total with coupons applied
    */
   public float getTotalWithCoupons(){
     if (totalWithCoupons == 0){
@@ -118,7 +115,7 @@ public class Cart implements ICoupon {
   }
 
   /**
-   * Mutator that sets totalWithCoupons value
+   * Changes the total after coupons are applied using the given value
    * @param value
    */
   public void setTotalWithCoupons(float value)
@@ -128,46 +125,18 @@ public class Cart implements ICoupon {
 
   /**
    * @param index
-   * @return quanity of Item in cart
+   * @return Integer representation of an IItem's quantity in the cart given an index
    */
   public int getQuantity(int index)
   {
     return CartQuantities.get(index);
   }
 
-  /**
-   * Tells Model.NozamaSystem to process payment And remove items from SellerAccount inventory
-   */
-  public void checkout(){
-    //TODO Model.NozamaSystem.ProcessPayment(/*Final discounted price goes here*/);  // returns true or false to see if payment continues thorough.
-    //TODO destroy cart. No longer needed.
-  }
-  /**
-   * @Author: Jamar (Decorator Pattern).
-   * @return: total for concrete class used by the decorator.
-   */
-
-  public String getDescription() {
-    return "Basic cart no coupons added yet";
-  }
-//
-//  public void AddFivePercentCoupon() {
-//    coupon = new ApplyFiveOff(this);
-//  }
-
-//
-//  public float AddTenPercentCoupon() {
-//    return total;
-//  }
-
   protected ArrayList<IItem> CartContainer;
   protected ArrayList<Integer> CartQuantities;
   private float total;
-
   private float totalWithCoupons;
   public String cartMessage;
-
-  public ICoupon coupon;
 
 
 }
