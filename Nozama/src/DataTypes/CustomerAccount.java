@@ -1,13 +1,11 @@
 package DataTypes;
 
-import DataTypes.User;
-import Model.Cart;
-import Model.NozamaSystem;
 import NozamaGui.Screens.CustomerDashboard;
+import Model.Cart;
 
 /**
+ * Represents a customer owned account. Implements IAccount
  * @author Jordan Diaz
- * CustomerAccount instantiates customerDashboard
  */
 public class CustomerAccount implements IAccount
 {
@@ -15,7 +13,8 @@ public class CustomerAccount implements IAccount
     private Cart currCart;
 
     /**
-     * CustomerAccount Constructor takes in an instant of the User object and defines the accountUser variable.
+     * Constructor
+     * @param user account user
      */
     public CustomerAccount(User user)
     {
@@ -23,9 +22,8 @@ public class CustomerAccount implements IAccount
         this.currCart = new Cart();
     }
 
-
     /**
-     * Creates a customer and Seller Homepage instance depending on Account type.
+     * Changes pages to Customer Dashboard
      */
     @Override
     public void OnLogIn()
@@ -33,13 +31,4 @@ public class CustomerAccount implements IAccount
         System.out.println("A customer has logged in");
         CustomerDashboard customerDashboard = new CustomerDashboard();
     }
-
-    // add to cart
-
-
-    // get inventory
-
-
-
-
 }

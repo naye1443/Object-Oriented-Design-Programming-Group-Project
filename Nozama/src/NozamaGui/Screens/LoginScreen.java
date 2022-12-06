@@ -9,6 +9,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Represents Screen that uses a form to be generated in JSwing. Extends JDialog
+ */
 public class LoginScreen extends JDialog
 {
     private JTextField tfUsername;

@@ -16,6 +16,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Represents Screen that uses a form to be generated in JSwing. Extends JDialog
+ */
 public class SellerDashboard extends JDialog
 {
     private JPanel mainPanel;
@@ -115,6 +118,48 @@ public class SellerDashboard extends JDialog
             }
         });
 
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+
+                if (isEditing)
+                    return;
+
+                DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) itemTree.getLastSelectedPathComponent();
+
+                if (selectedNode.equals(itemTree.getModel().getRoot()))
+                    return;
+
+                if (selectedNode.getParent().equals(itemTree.getModel().getRoot()))
+                {
+                    DefaultMutableTreeNode node = (DefaultMutableTreeNode) itemTree.getSelectionPath().getLastPathComponent();
+
+                    IItem item = listings.get(selectedNode.getParent().getIndex(node));
+
+                    instance.getInventory().remove(selectedNode.getParent().getIndex(node));
+                    instance.updateInventoryJson();
+                    SellerDashboard screen = new SellerDashboard(vendor);
+                    dispose();
+
+                }
+
+                if (selectedNode.isLeaf())
+                {
+                    DefaultMutableTreeNode bundleNode = (DefaultMutableTreeNode) selectedNode.getParent();
+
+                    Bundle bundle = (Bundle) listings.get(selectedNode.getParent().getParent().getIndex(bundleNode));
+
+                    bundle.getItemList().remove(selectedNode.getParent().getIndex((DefaultMutableTreeNode) itemTree.getSelectionPath().getLastPathComponent()));
+
+                    instance.updateInventoryJson();
+                    SellerDashboard screen = new SellerDashboard(vendor);
+                    dispose();
+
+                }
+            }
+        });
+
         addNewItemListingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -122,14 +167,22 @@ public class SellerDashboard extends JDialog
                 if (isEditing)
                     return;
 
-                AddItemScreen screen = new AddItemScreen(currentVendor,SellerDashboard.this);
+                AddItemScreen screen = new AddItemScreen(currentVendor,SellerDashboard.this, false,null);
             }
         });
 
+        addNewBundleListingButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isEditing)
+                    return;
+
+                AddBundleScreen screen = new AddBundleScreen(currentVendor, SellerDashboard.this);
+            }
+        });
+
+
         instance.informView(SellerDashboard.this); //same thing as setVisible(true); // must be last line
-
-
-
     }
 
 

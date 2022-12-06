@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 import ReadWrite.Json.JSONArray;
 import ReadWrite.Json.parser.JSONParser;
 import ReadWrite.Json.parser.ParseException;
@@ -94,7 +95,6 @@ public class JsonHandler
                 }
             }
 
-            //file.write(data.toJSONString());
             file.flush();
         }
         catch (IOException e)
@@ -102,8 +102,6 @@ public class JsonHandler
             throw new RuntimeException(e);
         }
     }
-
-
 
 
 }

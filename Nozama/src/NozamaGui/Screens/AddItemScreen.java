@@ -1,5 +1,6 @@
 package NozamaGui.Screens;
 
+import DataTypes.Item;
 import DataTypes.SellerAccount;
 import Model.NozamaSystem;
 
@@ -7,10 +8,11 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.*;
 
+/**
+ * Represents Screen that uses a form to be generated in JSwing. Extends JDialog
+ */
 public class AddItemScreen extends JDialog
 {
     private JPanel mainPanel;
@@ -21,8 +23,9 @@ public class AddItemScreen extends JDialog
     private JSpinner quantitySpinner;
     private JTextField vendorTextField;
     private JButton addItemButton;
+    private JLabel infoText;
 
-    public AddItemScreen(SellerAccount account, SellerDashboard accountDashboard)
+    public AddItemScreen(SellerAccount account, SellerDashboard accountDashboard, Boolean doBundle, AddBundleScreen bundleScreen)
     {
         setTitle("Add Item");
         setContentPane(mainPanel);
@@ -61,10 +64,45 @@ public class AddItemScreen extends JDialog
             }
         });
 
+        addItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+
+                Integer temp = Integer.parseInt(instance.getLastID()) + 1;
+                Item item = new Item(String.format("%03d", temp),
+                        nameTextField.getText(),
+                        invoicePriceTextField.getText(),
+                        sellPriceTextField.getText(),
+                        descriptionTextField.getText(),
+                        quantitySpinner.getValue().toString(),
+                        vendorTextField.getText());
+
+                if (doBundle)
+                {
+                    bundleScreen.itemsForBundle.add(item);
+                    dispose();
+                }
+                else
+                {
+                    instance.getInventory().add(item);
+                    instance.updateInventoryJson();
+                    SellerDashboard screen = new SellerDashboard(account);
+                    dispose();
+                    accountDashboard.dispose();
+                }
+
+
+
+            }
+        });
+
         instance.informView(AddItemScreen.this); //same thing as setVisible(true); // must be last line
 
 
+
     }
+
 
 
 }
