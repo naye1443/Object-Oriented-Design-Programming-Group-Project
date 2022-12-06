@@ -22,7 +22,9 @@ public class NozamaSystem
      * @author Jordan Diaz
      * */
 
-    private NozamaSystem(){}
+    private NozamaSystem(){
+        addObserver(view);
+    }
 
     /**
      * @return One Constant Instance of NozamaSystem
@@ -384,15 +386,21 @@ public class NozamaSystem
         return currentUser;
     }
 
-    /**
-     * Upddate View
-     * @param screen
-     */
-    public void informView(Window screen)
+    public void addObserver(IObserver observer)
     {
-        view.showScreen(screen);
+        observers.add(observer);
     }
 
+    public void notifyObservers(Window screen)
+    {
+        for (IObserver observer : observers)
+        {
+            observer.update(screen);
+        }
+    }
+
+
+    private ArrayList<IObserver> observers = new ArrayList<>();
     private static NozamaSystem instance;
     private JsonHandler jsonHandler = new JsonHandler();
     private JSONArray userData;

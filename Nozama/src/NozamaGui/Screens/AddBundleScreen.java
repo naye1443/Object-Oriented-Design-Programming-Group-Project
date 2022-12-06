@@ -98,8 +98,7 @@ public class AddBundleScreen extends JDialog{
             }
         });
 
-        instance.informView(AddBundleScreen.this); //same thing as setVisible(true); // must be last line
-
+        instance.notifyObservers(AddBundleScreen.this);
     }
 
     public int numberOfItems;

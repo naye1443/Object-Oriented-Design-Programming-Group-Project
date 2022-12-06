@@ -59,7 +59,6 @@ public class EditItemScreen extends JDialog
         descriptionTextField.setText(itemToChange.getDescription());
         vendorTextField.setText(itemToChange.getVendor().getUserName());
         quantitySpinner.setValue(itemToChange.getQuantity());
-        //textArea1.setText(itemToChange.toString());
 
         quantitySpinner.addChangeListener(new ChangeListener() {
             @Override
@@ -89,8 +88,7 @@ public class EditItemScreen extends JDialog
             }
         });
 
-        instance.informView(EditItemScreen.this); //same thing as setVisible(true); // must be last line
-
+        instance.notifyObservers(EditItemScreen.this);
 
     }
 }

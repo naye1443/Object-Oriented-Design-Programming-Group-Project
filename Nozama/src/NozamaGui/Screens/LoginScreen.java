@@ -59,9 +59,8 @@ public class LoginScreen extends JDialog
             }
         });
 
+        instance.notifyObservers(LoginScreen.this);
 
-        instance.informView(LoginScreen.this);
-        //setVisible(true); // This line must be after the action listeners
     }
 
     private void showErrorMessage(LoginScreen loginScreen)
