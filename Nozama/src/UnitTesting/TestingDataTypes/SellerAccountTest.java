@@ -1,5 +1,6 @@
 package UnitTesting.TestingDataTypes;
 
+import NozamaGui.Screens.SellerDashboard;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ class SellerAccountTest {
 
 	private String userName;
 	private float profit, revenues, costs;
+	SellerAccount TestSeller;
 
 	@BeforeEach
 	void setUp() {
@@ -19,6 +21,7 @@ class SellerAccountTest {
 		this.profit = 264.0f;
 		this.revenues = 475.0f;
 		this.costs = 211.0f;
+		this.TestSeller = new SellerAccount("seller1",264.0f,475.0f,211.0f);
 	}
 
 	@AfterEach
@@ -27,6 +30,8 @@ class SellerAccountTest {
 
 	@Test
 	void onLogIn() {
+		// Initializes SellerDashboard view in NozamaGui.Screens
+		SellerDashboard sellerDashboard = new SellerDashboard(this.TestSeller);
 	}
 
 	@Test
