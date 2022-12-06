@@ -99,13 +99,7 @@ public class SellerDashboard extends JDialog
                 {
                     DefaultMutableTreeNode bundleNode = (DefaultMutableTreeNode) selectedNode.getParent();
 
-
-
                     Bundle bundle = (Bundle) listings.get(selectedNode.getParent().getParent().getIndex(bundleNode));
-
-                    //System.out.println(bundleNode.toString());
-                    //System.out.println(bundle);
-                    //System.out.println(selectedNode.getParent().getIndex((DefaultMutableTreeNode) itemTree.getSelectionPath().getLastPathComponent()));
 
                     Item subItem = bundle.getItemList().get(selectedNode.getParent().getIndex((DefaultMutableTreeNode) itemTree.getSelectionPath().getLastPathComponent()));
 
@@ -181,8 +175,7 @@ public class SellerDashboard extends JDialog
             }
         });
 
-
-        instance.informView(SellerDashboard.this); //same thing as setVisible(true); // must be last line
+        instance.notifyObservers(SellerDashboard.this);
     }
 
 
@@ -229,9 +222,7 @@ public class SellerDashboard extends JDialog
         this.isEditing = mode;
     }
 
-
     private SellerAccount currentVendor;
     private ArrayList<IItem> listings = new ArrayList<>();
-
     private boolean isEditing = false;
 }

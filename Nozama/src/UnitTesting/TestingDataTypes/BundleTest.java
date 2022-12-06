@@ -1,4 +1,4 @@
-package UnitTesting;
+package UnitTesting.TestingDataTypes;
 
 import DataTypes.Bundle;
 import DataTypes.Item;

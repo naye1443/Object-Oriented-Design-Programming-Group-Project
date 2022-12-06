@@ -93,16 +93,11 @@ public class AddItemScreen extends JDialog
                 }
 
 
-
             }
         });
 
-        instance.informView(AddItemScreen.this); //same thing as setVisible(true); // must be last line
-
-
+        instance.notifyObservers(AddItemScreen.this);
 
     }
-
-
 
 }

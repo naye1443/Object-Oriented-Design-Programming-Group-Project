@@ -1,14 +1,15 @@
-package UnitTesting;
+package UnitTesting.TestingDataTypes;
 
-import DataTypes.ApplyTenOff;
+import DataTypes.ApplyFiveOff;
 import DataTypes.ICoupon;
 import DataTypes.Item;
 import Model.Cart;
+import Model.NozamaSystem;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ApplyTenOffTest {
+class ApplyFiveOffTest {
 
     @Test
     void getTotal() {
@@ -16,8 +17,8 @@ class ApplyTenOffTest {
         Item i = new Item("99", "carrots", "35","33","carrotse bad", "1", "");
         c.addItem(i,5);
         ICoupon coupon;
-        coupon = new ApplyTenOff(c);
+        coupon = new ApplyFiveOff(c);
 
-        assertEquals(148.5,coupon.getTotal());
+        assertEquals(156.75,coupon.getTotal());
     }
 }

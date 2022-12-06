@@ -83,10 +83,8 @@ public class CustomerDashboard extends JDialog
                     quantitySpinner.setValue(1);
                 }
 
-
             }
         });
-
 
         // Cart Button
         cartButton.addActionListener(new ActionListener() {
@@ -113,8 +111,7 @@ public class CustomerDashboard extends JDialog
             }
         });
 
-        NozamaSystem.getInstance().informView(CustomerDashboard.this); //same thing as setVisible(true); // must be last line
-
+        instance.notifyObservers(CustomerDashboard.this);
 
     }
 
