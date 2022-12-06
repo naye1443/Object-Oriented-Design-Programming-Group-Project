@@ -229,9 +229,7 @@ public class CartScreen extends JFrame
             }
         });
 
-        NozamaSystem.getInstance().informView(CartScreen.this); //same thing as setVisible(true); // must be last line
-
-
+        NozamaSystem.getInstance().notifyObservers(CartScreen.this);
 
     }
 

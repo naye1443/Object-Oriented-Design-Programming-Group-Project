@@ -38,7 +38,6 @@ public class CheckoutScreen extends JDialog {
 
         totalPriceLabel.setText("Total: $" + String.format("%.02f", instance.getCart().getTotalWithCoupons()));
 
-
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,7 +62,7 @@ public class CheckoutScreen extends JDialog {
             }
         });
 
-        NozamaSystem.getInstance().informView(CheckoutScreen.this); //same thing as setVisible(true); // must be last line
+        instance.notifyObservers(CheckoutScreen.this);
 
     }
 }
