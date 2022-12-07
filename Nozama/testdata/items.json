@@ -1,15 +1,5 @@
 [
 	{
-		"000":{
-			"name":"T-Shirt",
-			"invoice_price":"10.00",
-			"sell_price":"15.00",
-			"description":"It's a T-shirt bro... calm down",
-			"quantity":"7",
-			"vendor":"seller1"
-			}
-		},
-	{
 		"b000":{
 			"bundleName":"Bundle Name",
 			"vendor":"seller1",
